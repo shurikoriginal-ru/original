@@ -69,7 +69,7 @@
             margin-bottom: 35px;
         }
         
-        /* Базовые стили кнопок — теперь цвет задается индивидуально */
+        /* Базовые стили кнопок */
         .btn-install {
             display: flex; /* Использование flex для выравнивания иконки и текста */
             align-items: center;
@@ -92,33 +92,25 @@
             transform: scale(0.98); /* Эффект легкого нажатия */
         }
 
-        /* Аккуратная текстовая заглушка под картинку внутри брендированной кнопки */
-        .btn-icon-placeholder {
+        /* Аккуратные мини-иконки в стиле iOS squircle */
+        .btn-icon {
             width: 24px;
             height: 24px;
-            border-radius: 7px; /* Скругление squircle */
-            margin-right: 10px; /* Отступ от текста кнопки */
-            background: rgba(255, 255, 255, 0.2); /* Полупрозрачный контрастный фон для букв */
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
+            border-radius: 7px; /* Идеальное пропорциональное скругление для размера 24x24 */
+            margin-right: 10px; /* Отступ между логотипом и текстом */
+            object-fit: cover;
             flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* ИНДИВИДУАЛЬНЫЕ БРЕНДОВЫЕ ЦВЕТА КНОПОК */
         .btn-max { background-color: #002df1; color: #ffffff; }
         .btn-vk { background-color: #0077ff; color: #ffffff; }
-        .btn-avito { background-color: #00aa46; color: #ffffff; }
+        
+        /* Авито: белая кнопка с черным текстом */
+        .btn-avito { background-color: #ffffff; color: #000000; }
+        
         .btn-sber { background-color: #21a038; color: #ffffff; }
-        
-        /* Т-Банк: черные буквы текста и черные буквы в заглушке */
-        .btn-tbank { background-color: #ffdd2d; color: #000000; }
-        .btn-tbank .btn-icon-placeholder { background: rgba(0, 0, 0, 0.1); color: #000000; border-color: rgba(0, 0, 0, 0.05); }
-        
+        .btn-tbank { background-color: #ffdd2d; color: #000000; } /* Темные буквы для контраста */
         .btn-alfa { background-color: #ef3124; color: #ffffff; }
         .btn-mail { background-color: #005ffc; color: #ffffff; }
         
@@ -183,62 +175,62 @@
         <div id="buttons-container">
             
             <!-- Кнопка 1: MAX -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-max">
-                <div class="btn-icon-placeholder">MX</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-max">
+                <img src="MAX logo .png" class="btn-icon" alt="">
                 Установить MAX
             </a>
 
             <!-- Кнопка 2: VK -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-vk">
-                <div class="btn-icon-placeholder">VK</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-vk">
+                <img src="VK logo.png" class="btn-icon" alt="">
                 Установить VK
             </a>
 
-            <!-- Кнопка 3: Авито -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-avito">
-                <div class="btn-icon-placeholder">АВ</div>
+            <!-- Кнопка 3: Авито (БЕЛАЯ КНОПКА) -->
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-avito">
+                <img src="Avito logo.jpg" class="btn-icon" alt="">
                 Установить Авито
             </a>
 
             <!-- Кнопка 4: СБЕР -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-sber">
-                <div class="btn-icon-placeholder">СБ</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-sber">
+                <img src="SBER logo.jpg" class="btn-icon" alt="">
                 Установить СБЕР
             </a>
 
             <!-- Кнопка 5: Т-Банк -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-tbank">
-                <div class="btn-icon-placeholder">ТБ</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-tbank">
+                <img src="Tbank logo.jpg" class="btn-icon" alt="">
                 Установить Т-Банк
             </a>
 
             <!-- Кнопка 6: Альфа-Банк -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-alfa">
-                <div class="btn-icon-placeholder">АБ</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-alfa">
+                <img src="Alfa Bank logo.png" class="btn-icon" alt="">
                 Установить Альфа-Банк
             </a>
 
             <!-- Кнопка 7: Почта Mail -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-mail">
-                <div class="btn-icon-placeholder">МЛ</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-mail">
+                <img src="Mail logo.jpg" class="btn-icon" alt="">
                 Установить Почта Mail
             </a>
 
             <!-- Кнопка 8: Яндекс Пэй -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-ypay">
-                <div class="btn-icon-placeholder">ЯП</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-ypay">
+                <img src="Yandex Pay logo.png" class="btn-icon" alt="">
                 Установить Яндекс Пэй
             </a>
 
             <!-- Кнопка 9: Ozon Банк -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-ozon">
-                <div class="btn-icon-placeholder">ОЗ</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-ozon">
+                <img src="ozon bank logo.jpg" class="btn-icon" alt="">
                 Установить Ozon Банк
             </a>
 
             <!-- Кнопка 10: Wildberries -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-wb">
-                <div class="btn-icon-placeholder">WB</div>
+            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-wb">
+                <img src="WB logo.png" class="btn-icon" alt="">
                 Установить Wildberries
             </a>
 
