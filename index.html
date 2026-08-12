@@ -24,9 +24,9 @@
             background: #1c1c1e; /* Темно-серый фон карточки (iOS Dark Style) */
             padding: 25px;
             border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             box-sizing: border-box;
-            margin: 20px 0;
+            margin: 20px 0; /* Отступы сверху и снизу для длинных списков */
             
             /* Нативная CSS анимация появления карточки */
             animation: fadeInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
@@ -53,62 +53,24 @@
             border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             margin-bottom: 15px;
-            object-fit: cover;
         }
         h1 {
             font-size: 24px;
             margin: 0 0 8px 0;
-            font-weight: 600;
         }
         .subtitle {
             color: #8e8e93; /* Приглушенный серый цвет */
             font-size: 14px;
             margin: 0;
-            line-height: 1.4;
         }
 
-        .instruction-list {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-        .instruction-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-            font-size: 15px;
-            line-height: 1.4;
-        }
-        .step-number {
-            background-color: #2c2c2e;
-            color: #0a84ff;
-            font-weight: bold;
-            min-width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
-
-        /* Контейнер для группы кнопок */
-        .buttons-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        /* Кнопки установки с интеграцией логотипов */
+        /* Кнопки и логотипы внутри них */
         .btn {
             display: flex;
             align-items: center;
             justify-content: flex-start;
             width: 100%;
-            background-color: #0a84ff; /* Родной синий цвет iOS */
+            background-color: #0a84ff;
             color: #ffffff;
             padding: 12px 16px;
             border-radius: 14px;
@@ -116,36 +78,15 @@
             font-weight: 600;
             text-decoration: none;
             box-sizing: border-box;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.2);
+            margin-bottom: 12px;
         }
-        .btn:hover {
-            background-color: #0071e3;
-        }
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Стили для логотипов внутри кнопок (вместо заглушек) */
         .btn-logo {
             width: 32px;
             height: 32px;
             border-radius: 7px;
             object-fit: cover;
             margin-right: 14px;
-            background-color: #ffffff; /* Белая подложка для прозрачных логотипов */
             flex-shrink: 0;
-        }
-
-        .warning-box {
-            background-color: rgba(255, 159, 10, 0.15);
-            border-left: 4px solid #ff9f0a;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-top: 25px;
-            font-size: 13px;
-            color: #ff9f0a;
-            line-height: 1.4;
         }
     </style>
 </head>
@@ -153,84 +94,62 @@
 
     <div class="container">
         <div class="header">
-            <img src="logo.png" alt="shurikApp Иконка" class="app-icon">
-            <h1>Установка shurikApp</h1>
-            <p class="subtitle">Корпоративный установщик сервисов для вашего iOS-устройства</p>
+            <img src="logo.png" alt="Иконка приложения" class="app-icon">
+            <h1>Установка приложений на iPhone</h1>
+            <p class="subtitle"></p>
         </div>
 
-        <ul class="instruction-list">
-            <li class="instruction-item">
-                <span class="step-number">1</span>
-                <span>Нажмите кнопку нужного сервиса ниже и подтвердите запрос во всплывающем окне iOS.</span>
-            </li>
-            <li class="instruction-item">
-                <span class="step-number">2</span>
-                <span>Дождитесь завершения загрузки иконки на домашнем экране.</span>
-            </li>
-            <li class="instruction-item">
-                <span class="step-number">3</span>
-                <span>Если приложение не запускается, перейдите в <strong>Настройки ➡️ Основные ➡️ VPN и управление устройством</strong> и подтвердите профиль разработчика.</span>
-            </li>
-        </ul>
+        <!-- Кнопки установки с логотипами из вашего репозитория -->
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="MAX logo .png" alt="MAX" class="btn-logo">
+            <span>Установить MAX</span>
+        </a>
 
-        <!-- Список кнопок установки с логотипами из вашего репозитория -->
-        <div class="buttons-group">
-            
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="MAX logo .png" alt="MAX" class="btn-logo">
-                <span>Установить MAX</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="SBER logo.jpg" alt="СберБанк" class="btn-logo">
+            <span>Установить СберБанк</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="SBER logo.jpg" alt="Сбер" class="btn-logo">
-                <span>Установить СберБанк</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="Tbank logo.jpg" alt="Т-Банк" class="btn-logo">
+            <span>Установить Т-Банк</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="Tbank logo.jpg" alt="Т-Банк" class="btn-logo">
-                <span>Установить Т-Банк</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="Alfa Bank logo.png" alt="Альфа-Банк" class="btn-logo">
+            <span>Установить Альфа-Банк</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="Alfa Bank logo.png" alt="Альфа" class="btn-logo">
-                <span>Установить Альфа-Банк</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="ozon bank logo.jpg" alt="Ozon Банк" class="btn-logo">
+            <span>Установить Ozon Банк</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="ozon bank logo.jpg" alt="Ozon" class="btn-logo">
-                <span>Установить Ozon Банк</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="Yandex Pay logo.png" alt="Яндекс Пэй" class="btn-logo">
+            <span>Установить Яндекс Пэй</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="Yandex Pay logo.png" alt="Яндекс" class="btn-logo">
-                <span>Установить Яндекс Пэй</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="VK logo.png" alt="VK" class="btn-logo">
+            <span>Установить VK</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="VK logo.png" alt="VK" class="btn-logo">
-                <span>Установить VK</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="Mail logo.jpg" alt="Mail.ru" class="btn-logo">
+            <span>Установить Mail.ru</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="Mail logo.jpg" alt="Mail" class="btn-logo">
-                <span>Установить Mail.ru</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="Avito logo.jpg" alt="Авито" class="btn-logo">
+            <span>Установить Авито</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="Avito logo.jpg" alt="Авито" class="btn-logo">
-                <span>Установить Авито</span>
-            </a>
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
+            <img src="WB logo.png" alt="Wildberries" class="btn-logo">
+            <span>Установить Wildberries</span>
+        </a>
 
-            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-                <img src="WB logo.png" alt="WB" class="btn-logo">
-                <span>Установить Wildberries</span>
-            </a>
-
-        </div>
-
-        <div class="warning-box">
-            <strong>Важно:</strong> Установка возможна только при добавлении вашего UUID устройства в активный Provisioning Profile сборки.
-        </div>
     </div>
 
 </body>
