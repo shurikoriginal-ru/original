@@ -63,93 +63,197 @@
             font-size: 14px;
             margin: 0;
         }
-
-        /* Кнопки и логотипы внутри них */
-        .btn {
-            display: flex;
+        
+        /* Контейнер для кнопок */
+        #buttons-container {
+            margin-bottom: 35px;
+        }
+        
+        /* Базовые стили кнопок — теперь цвет задается индивидуально */
+        .btn-install {
+            display: flex; /* Использование flex для выравнивания иконки и текста */
             align-items: center;
-            justify-content: flex-start;
-            width: 100%;
-            background-color: #0a84ff;
-            color: #ffffff;
+            justify-content: center;
+            text-decoration: none;
             padding: 12px 16px;
             border-radius: 14px;
-            font-size: 16px;
             font-weight: 600;
-            text-decoration: none;
-            box-sizing: border-box;
-            margin-bottom: 12px;
+            font-size: 16px;
+            margin-bottom: 12px; /* Отступ между кнопками */
+            transition: filter 0.2s, transform 0.1s;
         }
-        .btn-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 7px;
-            object-fit: cover;
-            margin-right: 14px;
+        .btn-install:last-child {
+            margin-bottom: 0; /* У последней кнопки отступ снизу убирается */
+        }
+        .btn-install:hover {
+            filter: brightness(1.1); /* Легкое осветление кнопки при наведении */
+        }
+        .btn-install:active {
+            transform: scale(0.98); /* Эффект легкого нажатия */
+        }
+
+        /* Аккуратная текстовая заглушка под картинку внутри брендированной кнопки */
+        .btn-icon-placeholder {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px; /* Скругление squircle */
+            margin-right: 10px; /* Отступ от текста кнопки */
+            background: rgba(255, 255, 255, 0.2); /* Полупрозрачный контрастный фон для букв */
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
             flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ИНДИВИДУАЛЬНЫЕ БРЕНДОВЫЕ ЦВЕТА КНОПОК */
+        .btn-max { background-color: #002df1; color: #ffffff; }
+        .btn-vk { background-color: #0077ff; color: #ffffff; }
+        .btn-avito { background-color: #00aa46; color: #ffffff; }
+        .btn-sber { background-color: #21a038; color: #ffffff; }
+        
+        /* Т-Банк: черные буквы текста и черные буквы в заглушке */
+        .btn-tbank { background-color: #ffdd2d; color: #000000; }
+        .btn-tbank .btn-icon-placeholder { background: rgba(0, 0, 0, 0.1); color: #000000; border-color: rgba(0, 0, 0, 0.05); }
+        
+        .btn-alfa { background-color: #ef3124; color: #ffffff; }
+        .btn-mail { background-color: #005ffc; color: #ffffff; }
+        
+        /* Яндекс Пэй: черная кнопка с неоновым красным контуром бренда */
+        .btn-ypay { background-color: #000000; color: #ffffff; border: 1px solid #ff3333; box-shadow: 0 0 8px rgba(255, 51, 51, 0.2); }
+        
+        .btn-ozon { background-color: #005bff; color: #ffffff; }
+        .btn-wb { background-color: #cb11ab; color: #ffffff; }
+        
+        .instruction-title {
+            font-size: 18px;
+            font-weight: 700;
+            border-top: 1px solid #38383a; /* Темный разделитель */
+            padding-top: 20px;
+            margin-bottom: 20px;
+        }
+        .step {
+            margin-bottom: 15px;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .step-num {
+            display: inline-block;
+            background: #2c2c2e; /* Темная подложка для номера шага */
+            color: #0a84ff; /* Синий акцент для цифры */
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .step-text {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .step-desc {
+            color: #8e8e93; /* Приглушенный текст описания */
+            font-size: 14px;
+            margin: 0 0 0 34px;
+            line-height: 1.4;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- Верхняя карточка -->
         <div class="header">
-            <img src="logo.png" alt="Иконка приложения" class="app-icon">
-            <h1>Установка приложений на iPhone</h1>
-            <p class="subtitle"></p>
+            <img src="logo.png" class="app-icon" alt="App Icon" onerror="this.style.display='none'">
+            <h1>Установка приложений</h1>
+            <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Кнопки установки с логотипами из вашего репозитория -->
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="MAX logo .png" alt="MAX" class="btn-logo">
-            <span>Установить MAX</span>
-        </a>
+        <!-- Контейнер со всеми 10 полностью брендированными кнопками -->
+        <div id="buttons-container">
+            
+            <!-- Кнопка 1: MAX -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-max">
+                <div class="btn-icon-placeholder">MX</div>
+                Установить MAX
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="SBER logo.jpg" alt="СберБанк" class="btn-logo">
-            <span>Установить СберБанк</span>
-        </a>
+            <!-- Кнопка 2: VK -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-vk">
+                <div class="btn-icon-placeholder">VK</div>
+                Установить VK
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Tbank logo.jpg" alt="Т-Банк" class="btn-logo">
-            <span>Установить Т-Банк</span>
-        </a>
+            <!-- Кнопка 3: Авито -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-avito">
+                <div class="btn-icon-placeholder">АВ</div>
+                Установить Авито
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Alfa Bank logo.png" alt="Альфа-Банк" class="btn-logo">
-            <span>Установить Альфа-Банк</span>
-        </a>
+            <!-- Кнопка 4: СБЕР -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-sber">
+                <div class="btn-icon-placeholder">СБ</div>
+                Установить СБЕР
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="ozon bank logo.jpg" alt="Ozon Банк" class="btn-logo">
-            <span>Установить Ozon Банк</span>
-        </a>
+            <!-- Кнопка 5: Т-Банк -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-tbank">
+                <div class="btn-icon-placeholder">ТБ</div>
+                Установить Т-Банк
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Yandex Pay logo.png" alt="Яндекс Пэй" class="btn-logo">
-            <span>Установить Яндекс Пэй</span>
-        </a>
+            <!-- Кнопка 6: Альфа-Банк -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-alfa">
+                <div class="btn-icon-placeholder">АБ</div>
+                Установить Альфа-Банк
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="VK logo.png" alt="VK" class="btn-logo">
-            <span>Установить VK</span>
-        </a>
+            <!-- Кнопка 7: Почта Mail -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-mail">
+                <div class="btn-icon-placeholder">МЛ</div>
+                Установить Почта Mail
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Mail logo.jpg" alt="Mail.ru" class="btn-logo">
-            <span>Установить Mail.ru</span>
-        </a>
+            <!-- Кнопка 8: Яндекс Пэй -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-ypay">
+                <div class="btn-icon-placeholder">ЯП</div>
+                Установить Яндекс Пэй
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Avito logo.jpg" alt="Авито" class="btn-logo">
-            <span>Установить Авито</span>
-        </a>
+            <!-- Кнопка 9: Ozon Банк -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-ozon">
+                <div class="btn-icon-placeholder">ОЗ</div>
+                Установить Ozon Банк
+            </a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="WB logo.png" alt="Wildberries" class="btn-logo">
-            <span>Установить Wildberries</span>
-        </a>
+            <!-- Кнопка 10: Wildberries -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-wb">
+                <div class="btn-icon-placeholder">WB</div>
+                Установить Wildberries
+            </a>
 
+        </div>
+
+        <!-- Блок визуальной инструкции -->
+        <div class="instruction-title">Инструкция по установке</div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">1</span>
+                <span class="step-text">Запустите установку</span>
+            </div>
+            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1-2 минуты, пока иконка появится на экране.</p>
+        </div>
     </div>
 
 </body>
