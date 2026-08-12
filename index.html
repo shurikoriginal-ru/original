@@ -26,17 +26,15 @@
             border-radius: 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             box-sizing: border-box;
-            margin: 20px 0; /* Отступы сверху и снизу для длинных списков */
             
-            /* Безопасная нативная анимация появления всей карточки */
-            animation: fadeInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            /* Ключевые стили для плавной анимации */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
         
+        /* Эффект плавного появления всей карточки */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -69,9 +67,9 @@
             margin-bottom: 35px;
         }
         
-        /* Стили кнопок — отображаются мгновенно и стабильно */
+        /* Стили кнопок */
         .btn-install {
-            display: flex; /* Использование flex для выравнивания иконки и текста */
+            display: flex; /* Используем flex для выравнивания иконки и текста */
             align-items: center;
             justify-content: center;
             background-color: #0a84ff; /* Яркий синий цвет для темной темы */
@@ -82,6 +80,10 @@
             font-weight: 600;
             font-size: 16px;
             margin-bottom: 12px; /* Отступ между кнопками */
+            
+            /* Плавность для ховера, нажатия и появления */
+            opacity: 0;
+            animation: fadeIn 0.4s ease forwards;
             transition: background-color 0.2s, transform 0.1s;
         }
         .btn-install:last-child {
@@ -94,32 +96,20 @@
             transform: scale(0.98); /* Эффект легкого нажатия */
         }
         
-        /* Стили для будущих реальных картинок */
+        /* Аккуратные мини-иконки в стиле iOS squircle */
         .btn-icon {
             width: 24px;
             height: 24px;
-            border-radius: 7px; /* Идеальное пропорциональное скругление */
-            margin-right: 10px;
+            border-radius: 7px; /* Идеальное скругление для размера 24x24 */
+            margin-right: 10px; /* Отступ между логотипом и текстом */
             object-fit: cover;
             flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Тонкая нативная обводка */
         }
-
-        /* Аккуратная текстовая заглушка под картинку */
-        .btn-icon-placeholder {
-            width: 24px;
-            height: 24px;
-            border-radius: 7px; /* Скругление squircle */
-            margin-right: 10px; /* Отступ от текста кнопки */
-            background: rgba(255, 255, 255, 0.15); /* Полупрозрачный фон */
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 700;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        /* Плавное проявление кнопок по очереди */
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
         
         .instruction-title {
@@ -177,13 +167,12 @@
     <div class="container">
         <!-- Верхняя карточка -->
         <div class="header">
-            <!-- Главная иконка страницы (поддерживает onerror-подстраховку) -->
-            <img src="logo.png" class="app-icon" alt="App Icon" onerror="this.style.display='none'">
+            <img src="logo.png" class="app-icon" alt="App Icon">
             <h1>Установка приложений</h1>
             <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Контейнер для 10 кнопок -->
+        <!-- Сюда скрипт сам добавит нужное количество кнопок -->
         <div id="buttons-container"></div>
 
         <!-- Блок визуальной инструкции -->
@@ -199,56 +188,66 @@
         </div>
     </div>
 
+    <!-- БЛОК ДЛЯ БЫСТРОГО РЕДАКТИРОВАНИЯ КНОПОК И ЛОГИКИ -->
     <script>
-        // Чистый список без внешних картинок. 
-        // В будущем, чтобы вставить свою иконку, просто пропишите путь к ней в logoUrl (например: logoUrl: "images/max.png")
+        // Обновленный список приложений с новыми названиями и иконками
         const apps = [
-            { title: "Установить MAX", code: "MX", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить VK", code: "VK", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Авито", code: "АВ", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Приложение 4", code: "04", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Приложение 5", code: "05", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Приложение 6", code: "06", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Приложение 7", code: "07", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Приложение 8", code: "08", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Приложение 9", code: "09", logoUrl: "", manifestUrl: "https://example.com" },
-            { title: "Установить Приложение 10", code: "10", logoUrl: "", manifestUrl: "https://example.com" }
+            { 
+                title: "Установить MAX", 
+                logoUrl: "https://max.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить VK", 
+                logoUrl: "https://vk.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Авито", 
+                logoUrl: "https://avito.st", 
+                manifestUrl: "https://githubusercontent.com" 
+            }
         ];
 
+        // Автоматическая генерация кнопок
         const container = document.getElementById('buttons-container');
-        
-        apps.forEach((app) => {
+        apps.forEach((app, index) => {
             const btn = document.createElement('a');
             btn.className = 'btn-install';
+            btn.href = `itms-services://?action=download-manifest&url=${app.manifestUrl}`;
             
-            // Нативная системная ссылка itms-services
-            btn.href = "itms-services://?action=download-manifest&url=" + encodeURIComponent(app.manifestUrl);
+            // Создаем и настраиваем элемент иконки слева
+            const img = document.createElement('img');
+            img.className = 'btn-icon';
+            img.src = app.logoUrl;
+            img.alt = "";
             
-            // Если в будущем вы укажете logoUrl — скрипт сам создаст картинку
-            if (app.logoUrl) {
-                const img = document.createElement('img');
-                img.className = 'btn-icon';
-                img.src = app.logoUrl;
-                img.alt = "";
-                
-                // Подстраховка на случай сбоя вашей картинки — заменит её обратно на текстовую заглушку
-                img.onerror = function() {
-                    img.style.display = 'none';
-                    if (!btn.querySelector('.btn-icon-placeholder')) {
-                        const placeholder = document.createElement('div');
-                        placeholder.className = 'btn-icon-placeholder';
-                        placeholder.textContent = app.code;
-                        btn.insertBefore(placeholder, img);
-                    }
-                };
-                btn.appendChild(img);
-            } else {
-                // Сейчас: сразу строим аккуратную заглушку с кодом приложения из параметра 'code'
-                const placeholder = document.createElement('div');
-                placeholder.className = 'btn-icon-placeholder';
-                placeholder.textContent = app.code;
-                btn.appendChild(placeholder);
-            }
-            
-            // Добавляем текст названия приложения
+            // Создаем текстовый узел
             const textNode = document.createTextNode(app.title);
+            
+            // Собираем кнопку: сначала логотип, затем текст
+            btn.appendChild(img);
+            btn.appendChild(textNode);
+            
+            // Каскадная задержка появления кнопок
+            btn.style.animationDelay = `${0.2 + (index * 0.1)}s`;
+            
+            container.appendChild(btn);
+        });
+
+        // Детектор браузера Safari на iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+
+        if (isIOS && !isSafari) {
+            const stepBlock = document.getElementById('installation-step');
+            const stepDesc = document.getElementById('step-description');
+            
+            stepBlock.classList.add('safari-warning');
+            stepBlock.querySelector('.step-text').textContent = 'Внимание: откройте в Safari';
+            stepDesc.innerHTML = 'Прямая установка приложений не поддерживается в текущем браузере. <strong>Скопируйте ссылку на этот сайт и откройте её строго через стандартное приложение Safari</strong>, иначе кнопка установки не сработает.';
+        }
+    </script>
+
+</body>
+</html>
