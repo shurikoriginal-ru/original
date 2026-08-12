@@ -7,8 +7,8 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #f5f5f7;
-            color: #1d1d1f;
+            background-color: #000000; /* Глубокий черный фон */
+            color: #f5f5f7; /* Светлый основной текст */
             margin: 0;
             padding: 20px;
             display: flex;
@@ -18,10 +18,10 @@
         .container {
             max-width: 450px;
             width: 100%;
-            background: white;
+            background: #1c1c1e; /* Темно-серый фон карточки (iOS Dark Style) */
             padding: 25px;
             border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             box-sizing: border-box;
         }
         .header {
@@ -32,7 +32,7 @@
             width: 80px;
             height: 80px;
             border-radius: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             margin-bottom: 15px;
         }
         h1 {
@@ -40,7 +40,7 @@
             margin: 0 0 8px 0;
         }
         .subtitle {
-            color: #86868b;
+            color: #8e8e93; /* Приглушенный серый цвет */
             font-size: 14px;
             margin: 0;
         }
@@ -53,7 +53,7 @@
         /* Стили кнопок */
         .btn-install {
             display: block;
-            background-color: #0071e3;
+            background-color: #0a84ff; /* Яркий синий цвет для темной темы */
             color: white;
             text-decoration: none;
             text-align: center;
@@ -62,19 +62,22 @@
             font-weight: 600;
             font-size: 16px;
             margin-bottom: 12px; /* Отступ между кнопками */
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, transform 0.1s;
         }
         .btn-install:last-child {
             margin-bottom: 0; /* У последней кнопки отступ снизу убирается */
         }
         .btn-install:hover {
-            background-color: #0077ed;
+            background-color: #0070e3;
+        }
+        .btn-install:active {
+            transform: scale(0.98); /* Эффект легкого нажатия */
         }
         
         .instruction-title {
             font-size: 18px;
             font-weight: 700;
-            border-top: 1px solid #e5e5ea;
+            border-top: 1px solid #38383a; /* Темный разделитель */
             padding-top: 20px;
             margin-bottom: 20px;
         }
@@ -88,8 +91,8 @@
         }
         .step-num {
             display: inline-block;
-            background: #e8e8ed;
-            color: #1d1d1f;
+            background: #2c2c2e; /* Темная подложка для номера шага */
+            color: #0a84ff; /* Синий акцент для цифры */
             font-weight: 700;
             width: 24px;
             height: 24px;
@@ -105,7 +108,7 @@
             font-weight: 600;
         }
         .step-desc {
-            color: #86868b;
+            color: #8e8e93; /* Приглушенный текст описания */
             font-size: 14px;
             margin: 0 0 0 34px;
             line-height: 1.4;
@@ -128,22 +131,13 @@
         <!-- Блок визуальной инструкции -->
         <div class="instruction-title">Инструкция по установке</div>
 
-        <!-- Шаг 1 -->
+        <!-- Только Шаг 1 -->
         <div class="step">
             <div class="step-header">
                 <span class="step-num">1</span>
                 <span class="step-text">Запустите установку</span>
             </div>
             <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 30-40 секунд, пока иконка появится на экране.</p>
-        </div>
-
-        <!-- Шаг 2 -->
-        <div class="step">
-            <div class="step-header">
-                <span class="step-num">2</span>
-                <span class="step-text">Доверьте профилю</span>
-            </div>
-            <p class="step-desc">Если при запуске возникает ошибка «Ненадежный корпоративный разработчик», зайдите в Настройки -> Основные -> VPN и управление устройством, выберите профиль автора и нажмите «Доверять».</p>
         </div>
     </div>
 
