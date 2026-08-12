@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Установка 2GIS на iPhone</title>
+    <title>Установка приложений на iPhone</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -26,7 +26,7 @@
         }
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         .app-icon {
             width: 80px;
@@ -44,6 +44,13 @@
             font-size: 14px;
             margin: 0;
         }
+        
+        /* Контейнер для кнопок */
+        #buttons-container {
+            margin-bottom: 35px;
+        }
+        
+        /* Стили кнопок */
         .btn-install {
             display: block;
             background-color: #0071e3;
@@ -54,12 +61,16 @@
             border-radius: 14px;
             font-weight: 600;
             font-size: 16px;
-            margin-bottom: 35px;
+            margin-bottom: 12px; /* Отступ между кнопками */
             transition: background-color 0.2s;
+        }
+        .btn-install:last-child {
+            margin-bottom: 0; /* У последней кнопки отступ снизу убирается */
         }
         .btn-install:hover {
             background-color: #0077ed;
         }
+        
         .instruction-title {
             font-size: 18px;
             font-weight: 700;
@@ -68,7 +79,12 @@
             margin-bottom: 20px;
         }
         .step {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
         }
         .step-num {
             display: inline-block;
@@ -81,17 +97,17 @@
             line-height: 24px;
             border-radius: 50%;
             font-size: 12px;
-            margin-right: 8px;
+            margin-right: 10px;
+            flex-shrink: 0;
         }
         .step-text {
             font-size: 15px;
             font-weight: 600;
-            display: inline;
         }
         .step-desc {
             color: #86868b;
             font-size: 14px;
-            margin: 5px 0 12px 32px;
+            margin: 0 0 0 34px;
             line-height: 1.4;
         }
     </style>
@@ -99,29 +115,66 @@
 <body>
 
     <div class="container">
-        <!-- Верхняя карточка с кнопкой -->
+        <!-- Верхняя карточка -->
         <div class="header">
-            <img src="logo.png" class="app-icon" alt="2GIS">
-            <h1>Установка 2GIS</h1>
-            <p class="subtitle">Версия 7.24.0 • Для iOS</p>
+            <img src="logo.png" class="app-icon" alt="App Icon">
+            <h1>Установка приложений</h1>
+            <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Кнопка с закрытой кавычкой на конце ссылки -->
-        <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/manifest.plist" class="btn-install">
-            Установить приложение
-        </a>
+        <!-- Сюда скрипт сам добавит нужное количество кнопок -->
+        <div id="buttons-container"></div>
 
         <!-- Блок визуальной инструкции -->
         <div class="instruction-title">Инструкция по установке</div>
 
         <!-- Шаг 1 -->
         <div class="step">
-            <span class="step-num">1</span>
-            <div class="step-text">Запустите установку</div>
-            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку «Установить» выше и подтвердите запрос системы. Подождите 30-40 секунд, пока иконка появится на экране.</p>
+            <div class="step-header">
+                <span class="step-num">1</span>
+                <span class="step-text">Запустите установку</span>
+            </div>
+            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 30-40 секунд, пока иконка появится на экране.</p>
         </div>
 
+        <!-- Шаг 2 -->
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">2</span>
+                <span class="step-text">Доверьте профилю</span>
+            </div>
+            <p class="step-desc">Если при запуске возникает ошибка «Ненадежный корпоративный разработчик», зайдите в Настройки -> Основные -> VPN и управление устройством, выберите профиль автора и нажмите «Доверять».</p>
+        </div>
     </div>
+
+    <!-- БЛОК ДЛЯ БЫСТРОГО РЕДАКТИРОВАНИЯ КНОПОК -->
+    <script>
+        // Просто меняйте этот список! Можно оставить 1, 2, 5 или сколько угодно строк.
+        const apps = [
+            { 
+                title: "Установить 2GIS (Версия 7.24.0)", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 2", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 3", 
+                manifestUrl: "https://githubusercontent.com" 
+            }
+        ];
+
+        // Код ниже автоматически берет данные из списка выше и строит кнопки
+        const container = document.getElementById('buttons-container');
+        apps.forEach(app => {
+            const btn = document.createElement('a');
+            btn.className = 'btn-install';
+            btn.href = `itms-services://?action=download-manifest&url=${app.manifestUrl}`;
+            btn.textContent = app.title;
+            container.appendChild(btn);
+        });
+    </script>
 
 </body>
 </html>
