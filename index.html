@@ -112,7 +112,11 @@
         /* ИНДИВИДУАЛЬНЫЕ БРЕНДОВЫЕ ЦВЕТА КНОПОК */
         .btn-max { background-color: #002df1; color: #ffffff; }
         .btn-vk { background-color: #0077ff; color: #ffffff; }
-        .btn-avito { background-color: #00aa46; color: #ffffff; }
+        
+        /* Авито: белая кнопка, черный текст и черные буквы в заглушке */
+        .btn-avito { background-color: #ffffff; color: #000000; }
+        .btn-avito .btn-icon-placeholder { background: rgba(0, 0, 0, 0.08); color: #000000; border-color: rgba(0, 0, 0, 0.05); }
+        
         .btn-sber { background-color: #21a038; color: #ffffff; }
         
         /* Т-Банк: черные буквы текста и черные буквы в заглушке */
@@ -194,7 +198,7 @@
                 Установить VK
             </a>
 
-            <!-- Кнопка 3: Авито -->
+            <!-- Кнопка 3: Авито (БЕЛАЯ КНОПКА) -->
             <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-avito">
                 <div class="btn-icon-placeholder">АВ</div>
                 Установить Авито
@@ -252,9 +256,3 @@
                 <span class="step-num">1</span>
                 <span class="step-text">Запустите установку</span>
             </div>
-            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1-2 минуты, пока иконка появится на экране.</p>
-        </div>
-    </div>
-
-</body>
-</html>
