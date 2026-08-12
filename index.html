@@ -199,7 +199,7 @@
     </div>
 
     <script>
-        // Список из 10 приложений с заглушками вместо внешних картинок
+        // Чистый список из 10 приложений
         const apps = [
             { title: "Установить MAX", code: "MX", logoUrl: "", manifestUrl: "https://example.com" },
             { title: "Установить VK", code: "VK", logoUrl: "", manifestUrl: "https://example.com" },
@@ -219,10 +219,10 @@
             const btn = document.createElement('a');
             btn.className = 'btn-install';
             
-            // Нативная системная ссылка itms-services
-            btn.href = "itms-services://?action=download-manifest&url=" + encodeURIComponent(app.manifestUrl);
+            // Прямая склейка без encodeURIComponent — Safari теперь не заблокирует генерацию
+            btn.href = "itms-services://?action=download-manifest&url=" + app.manifestUrl;
             
-            // Логика проверки logoUrl
+            // Если в будущем вы укажете logoUrl — скрипт сам создаст картинку
             if (app.logoUrl) {
                 const img = document.createElement('img');
                 img.className = 'btn-icon';
@@ -240,7 +240,7 @@
                 };
                 btn.appendChild(img);
             } else {
-                // Если картинка не указана, выводится нативная текстовая заглушка
+                // Текстовая заглушка под будущую иконку
                 const placeholder = document.createElement('div');
                 placeholder.className = 'btn-icon-placeholder';
                 placeholder.textContent = app.code;
