@@ -14,6 +14,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center; /* Центрирование по вертикали */
+            min-height: 100vh; /* Высота во весь экран */
+            box-sizing: border-box;
         }
         .container {
             max-width: 450px;
@@ -66,12 +69,13 @@
         
         /* Стили кнопок */
         .btn-install {
-            display: block;
+            display: flex; /* Используем flex для выравнивания иконки и текста */
+            align-items: center;
+            justify-content: center;
             background-color: #0a84ff; /* Яркий синий цвет для темной темы */
             color: white;
             text-decoration: none;
-            text-align: center;
-            padding: 14px;
+            padding: 12px 16px;
             border-radius: 14px;
             font-weight: 600;
             font-size: 16px;
@@ -90,6 +94,17 @@
         }
         .btn-install:active {
             transform: scale(0.98); /* Эффект легкого нажатия */
+        }
+        
+        /* Аккуратные мини-иконки в стиле iOS squircle */
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px; /* Идеальное скругление для размера 24x24 */
+            margin-right: 10px; /* Отступ между логотипом и текстом */
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Тонкая нативная обводка */
         }
         
         /* Плавное проявление кнопок по очереди */
@@ -136,6 +151,15 @@
             margin: 0 0 0 34px;
             line-height: 1.4;
         }
+        
+        /* Стили для предупреждения о Safari */
+        .safari-warning .step-num {
+            background: #ff453a; /* Красный цвет для привлечения внимания */
+            color: white;
+        }
+        .safari-warning .step-text {
+            color: #ff453a;
+        }
     </style>
 </head>
 <body>
@@ -154,47 +178,75 @@
         <!-- Блок визуальной инструкции -->
         <div class="instruction-title">Инструкция по установке</div>
 
-        <!-- Только Шаг 1 -->
-        <div class="step">
+        <!-- По умолчанию: стандартный Шаг 1 -->
+        <div class="step" id="installation-step">
             <div class="step-header">
                 <span class="step-num">1</span>
                 <span class="step-text">Запустите установку</span>
             </div>
-            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 30-40 секунд, пока иконка появится на экране.</p>
+            <p class="step-desc" id="step-description">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1-2 минуты, пока иконка появится на экране.</p>
         </div>
     </div>
 
-    <!-- БЛОК ДЛЯ БЫСТРОГО РЕДАКТИРОВАНИЯ КНОПОК -->
+    <!-- БЛОК ДЛЯ БЫСТРОГО РЕДАКТИРОВАНИЯ КНОПОК И ЛОГИКИ -->
     <script>
-        // Просто меняйте этот список! Можно оставить 1, 2, 5 или сколько угодно строк.
+        // Изменяйте этот список, указывая реальные пути к логотипам
         const apps = [
             { 
-                title: "Установить 2GIS (Версия 7.24.0)", 
+                title: "Установить 2GIS", 
+                logoUrl: "https://2gis.ru", 
                 manifestUrl: "https://githubusercontent.com" 
             },
             { 
                 title: "Установить Приложение 2", 
+                logoUrl: "https://placeholder.com", 
                 manifestUrl: "https://githubusercontent.com" 
             },
             { 
                 title: "Установить Приложение 3", 
+                logoUrl: "https://placeholder.com", 
                 manifestUrl: "https://githubusercontent.com" 
             }
         ];
 
-        // Код ниже автоматически берет данные из списка выше и строит кнопки с каскадной задержкой появления
+        // Автоматическая генерация кнопок
         const container = document.getElementById('buttons-container');
         apps.forEach((app, index) => {
             const btn = document.createElement('a');
             btn.className = 'btn-install';
             btn.href = `itms-services://?action=download-manifest&url=${app.manifestUrl}`;
-            btn.textContent = app.title;
             
-            // Каждая следующая кнопка появляется чуть позже предыдущей для красивого эффекта
+            // Создаем и настраиваем элемент иконки слева
+            const img = document.createElement('img');
+            img.className = 'btn-icon';
+            img.src = app.logoUrl;
+            img.alt = "";
+            
+            // Создаем текстовый узел
+            const textNode = document.createTextNode(app.title);
+            
+            // Собираем кнопку: сначала логотип, затем текст
+            btn.appendChild(img);
+            btn.appendChild(textNode);
+            
+            // Каскадная задержка появления кнопок
             btn.style.animationDelay = `${0.2 + (index * 0.1)}s`;
             
             container.appendChild(btn);
         });
+
+        // Детектор браузера Safari на iOS
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+
+        if (isIOS && !isSafari) {
+            const stepBlock = document.getElementById('installation-step');
+            const stepDesc = document.getElementById('step-description');
+            
+            stepBlock.classList.add('safari-warning');
+            stepBlock.querySelector('.step-text').textContent = 'Внимание: откройте в Safari';
+            stepDesc.innerHTML = 'Прямая установка приложений не поддерживается в текущем браузере. <strong>Скопируйте ссылку на этот сайт и откройте её строго через стандартное приложение Safari</strong>, иначе кнопка установки не сработает.';
+        }
     </script>
 
 </body>
