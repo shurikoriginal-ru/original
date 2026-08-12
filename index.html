@@ -23,7 +23,21 @@
             border-radius: 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             box-sizing: border-box;
+            
+            /* Ключевые стили для плавной анимации */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
+        
+        /* Эффект плавного появления всей карточки */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .header {
             text-align: center;
             margin-bottom: 25px;
@@ -62,6 +76,10 @@
             font-weight: 600;
             font-size: 16px;
             margin-bottom: 12px; /* Отступ между кнопками */
+            
+            /* Плавность для ховера, нажатия и появления */
+            opacity: 0;
+            animation: fadeIn 0.4s ease forwards;
             transition: background-color 0.2s, transform 0.1s;
         }
         .btn-install:last-child {
@@ -72,6 +90,11 @@
         }
         .btn-install:active {
             transform: scale(0.98); /* Эффект легкого нажатия */
+        }
+        
+        /* Плавное проявление кнопок по очереди */
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
         
         .instruction-title {
@@ -159,13 +182,17 @@
             }
         ];
 
-        // Код ниже автоматически берет данные из списка выше и строит кнопки
+        // Код ниже автоматически берет данные из списка выше и строит кнопки с каскадной задержкой появления
         const container = document.getElementById('buttons-container');
-        apps.forEach(app => {
+        apps.forEach((app, index) => {
             const btn = document.createElement('a');
             btn.className = 'btn-install';
             btn.href = `itms-services://?action=download-manifest&url=${app.manifestUrl}`;
             btn.textContent = app.title;
+            
+            // Каждая следующая кнопка появляется чуть позже предыдущей для красивого эффекта
+            btn.style.animationDelay = `${0.2 + (index * 0.1)}s`;
+            
             container.appendChild(btn);
         });
     </script>
