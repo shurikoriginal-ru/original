@@ -24,7 +24,7 @@
             background: #1c1c1e; /* Темно-серый фон карточки (iOS Dark Style) */
             padding: 25px;
             border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
             box-sizing: border-box;
             margin: 20px 0; /* Отступы сверху и снизу для длинных списков */
             
@@ -53,45 +53,75 @@
             border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             margin-bottom: 15px;
+            object-fit: cover;
         }
         h1 {
             font-size: 24px;
             margin: 0 0 8px 0;
+            font-weight: 600;
         }
         .subtitle {
             color: #8e8e93; /* Приглушенный серый цвет */
             font-size: 14px;
             margin: 0;
+            line-height: 1.4;
         }
-
-        /* Кнопки и логотипы внутри них */
-        .btn {
+        .instruction-list {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+        .instruction-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        .step-number {
+            background-color: #2c2c2e;
+            color: #0a84ff;
+            font-weight: bold;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .btn {
+            display: block;
             width: 100%;
-            background-color: #0a84ff;
+            background-color: #0a84ff; /* Родной синий цвет iOS */
             color: #ffffff;
-            padding: 12px 16px;
+            text-align: center;
+            padding: 16px;
             border-radius: 14px;
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
             box-sizing: border-box;
-            margin-bottom: 12px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
         }
-        .btn-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 7px;
-            object-fit: cover;
-            margin-right: 14px;
-            flex-shrink: 0;
+        .btn:hover {
+            background-color: #0071e3;
         }
-        /* Белая кнопка специально для Авито */
-        .btn-white {
-            background-color: #ffffff;
-            color: #000000;
+        .btn:active {
+            transform: scale(0.98);
+        }
+        .warning-box {
+            background-color: rgba(255, 159, 10, 0.15);
+            border-left: 4px solid #ff9f0a;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #ff9f0a;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -99,62 +129,37 @@
 
     <div class="container">
         <div class="header">
-            <img src="logo.png" alt="Иконка приложения" class="app-icon">
-            <h1>Установка приложений на iPhone</h1>
-            <p class="subtitle"></p>
+            <!-- Подключение иконки напрямую из вашего репозитория -->
+            <img src="logo.png" alt="shurikApp Иконка" class="app-icon">
+            <h1>Установка shurikApp</h1>
+            <p class="subtitle">Инструкция по установке корпоративного приложения на iOS-устройство</p>
         </div>
 
-        <!-- Кнопки установки с логотипами из вашего репозитория -->
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="MAX logo .png" alt="MAX" class="btn-logo">
-            <span>Установить MAX</span>
-        </a>
+        <ul class="instruction-list">
+            <li class="instruction-item">
+                <span class="step-number">1</span>
+                <span>Нажмите синюю кнопку <strong>«Установить приложение»</strong> ниже и подтвердите запрос во всплывающем окне системы.</span>
+            </li>
+            <li class="instruction-item">
+                <span class="step-number">2</span>
+                <span>Перейдите на домашний экран iPhone и дождитесь, пока иконка приложения полностью скачается и станет активной.</span>
+            </li>
+            <li class="instruction-item">
+                <span class="step-number">3</span>
+                <span>Если при запуске появится ошибка «Ненадежный корпоративный разработчик», откройте <strong>Настройки ➡️ Основные ➡️ VPN и управление устройством</strong>.</span>
+            </li>
+            <li class="instruction-item">
+                <span class="step-number">4</span>
+                <span>Найдите профиль разработчика в списке и нажмите кнопку <strong>«Доверять»</strong>.</span>
+            </li>
+        </ul>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="SBER logo.jpg" alt="СберБанк" class="btn-logo">
-            <span>Установить СберБанк</span>
-        </a>
+        <!-- Важная ссылка itms-services для развертывания через manifest.plist -->
+        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">Установить приложение</a>
 
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Tbank logo.jpg" alt="Т-Банк" class="btn-logo">
-            <span>Установить Т-Банк</span>
-        </a>
-
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Alfa Bank logo.png" alt="Альфа-Банк" class="btn-logo">
-            <span>Установить Альфа-Банк</span>
-        </a>
-
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="ozon bank logo.jpg" alt="Ozon Банк" class="btn-logo">
-            <span>Установить Ozon Банк</span>
-        </a>
-
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Yandex Pay logo.png" alt="Яндекс Пэй" class="btn-logo">
-            <span>Установить Яндекс Пэй</span>
-        </a>
-
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="VK logo.png" alt="VK" class="btn-logo">
-            <span>Установить VK</span>
-        </a>
-
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="Mail logo.jpg" alt="Mail.ru" class="btn-logo">
-            <span>Установить Mail.ru</span>
-        </a>
-
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn btn-white">
-            <img src="Avito logo.jpg" alt="Авито" class="btn-logo">
-            <span>Установить Авито</span>
-        </a>
-
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">
-            <img src="WB logo.png" alt="Wildberries" class="btn-logo">
-            <span>Установить Wildberries</span>
-        </a>
-
+        <div class="warning-box">
+            <strong>Обратите внимание:</strong> Для успешной установки ваш UUID устройства должен быть внесен в профиль обеспечения (Provisioning Profile) данного приложения.
+        </div>
     </div>
 
 </body>
