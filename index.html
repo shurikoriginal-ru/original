@@ -207,18 +207,18 @@
     </div>
 
     <script>
-        // Защищенный список приложений с короткими кодами для буквенных заглушек
+        // Защищенный список приложений с безопасными путями
         const apps = [
-            { title: "Установить MAX", code: "MX", logoUrl: "https://max.com", manifestUrl: "#" },
-            { title: "Установить VK", code: "VK", logoUrl: "https://vk.com", manifestUrl: "#" },
-            { title: "Установить Авито", code: "АВ", logoUrl: "https://avito.st", manifestUrl: "#" },
-            { title: "Установить Приложение 4", code: "04", logoUrl: "", manifestUrl: "#" },
-            { title: "Установить Приложение 5", code: "05", logoUrl: "", manifestUrl: "#" },
-            { title: "Установить Приложение 6", code: "06", logoUrl: "", manifestUrl: "#" },
-            { title: "Установить Приложение 7", code: "07", logoUrl: "", manifestUrl: "#" },
-            { title: "Установить Приложение 8", code: "08", logoUrl: "", manifestUrl: "#" },
-            { title: "Установить Приложение 9", code: "09", logoUrl: "", manifestUrl: "#" },
-            { title: "Установить Приложение 10", code: "10", logoUrl: "", manifestUrl: "#" }
+            { title: "Установить MAX", code: "MX", logoUrl: "https://max.com", manifestUrl: "https://example.com" },
+            { title: "Установить VK", code: "VK", logoUrl: "https://vk.com", manifestUrl: "https://example.com" },
+            { title: "Установить Авито", code: "АВ", logoUrl: "https://avito.st", manifestUrl: "https://example.com" },
+            { title: "Установить Приложение 4", code: "04", logoUrl: "", manifestUrl: "https://example.com" },
+            { title: "Установить Приложение 5", code: "05", logoUrl: "", manifestUrl: "https://example.com" },
+            { title: "Установить Приложение 6", code: "06", logoUrl: "", manifestUrl: "https://example.com" },
+            { title: "Установить Приложение 7", code: "07", logoUrl: "", manifestUrl: "https://example.com" },
+            { title: "Установить Приложение 8", code: "08", logoUrl: "", manifestUrl: "https://example.com" },
+            { title: "Установить Приложение 9", code: "09", logoUrl: "", manifestUrl: "https://example.com" },
+            { title: "Установить Приложение 10", code: "10", logoUrl: "", manifestUrl: "https://example.com" }
         ];
 
         const container = document.getElementById('buttons-container');
@@ -226,7 +226,9 @@
         apps.forEach((app, index) => {
             const btn = document.createElement('a');
             btn.className = 'btn-install';
-            btn.href = `itms-services://?action=download-manifest&url=${encodeURIComponent(app.manifestUrl)}`;
+            
+            // Защищенное построение системной ссылки itms-services
+            btn.href = "itms-services://?action=download-manifest&url=" + encodeURIComponent(app.manifestUrl);
             
             // Если ссылка на логотип передана — пытаемся загрузить картинку
             if (app.logoUrl) {
@@ -235,12 +237,14 @@
                 img.src = app.logoUrl;
                 img.alt = "";
                 
-                // Если картинка сломается/заблокируется при загрузке — заменяем её на текстовую заглушку прямо на лету
+                // Если картинка сломается или заблокируется — плавно меняем её на текстовую заглушку
                 img.onerror = function() {
                     const placeholder = document.createElement('div');
                     placeholder.className = 'btn-icon-placeholder';
                     placeholder.textContent = app.code;
-                    btn.replaceChild(placeholder, img);
+                    if (btn.contains(img)) {
+                        btn.replaceChild(placeholder, img);
+                    }
                 };
                 btn.appendChild(img);
             } else {
@@ -249,16 +253,3 @@
                 placeholder.className = 'btn-icon-placeholder';
                 placeholder.textContent = app.code;
                 btn.appendChild(placeholder);
-            }
-            
-            // Добавляем текст кнопки
-            const textNode = document.createTextNode(app.title);
-            btn.appendChild(textNode);
-            
-            // Каскадная задержка анимации
-            btn.style.animationDelay = `${0.2 + (index * 0.08)}s`;
-            
-            container.appendChild(btn);
-        });
-
-        // Проверка Safari на iOS
