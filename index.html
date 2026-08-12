@@ -107,6 +107,23 @@
             flex-shrink: 0;
             border: 1px solid rgba(255, 255, 255, 0.15); /* Тонкая нативная обводка */
         }
+
+        /* Заглушка вместо картинки, если логотип заблокирован или не загрузился */
+        .btn-icon-placeholder {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            margin-right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
         
         /* Плавное проявление кнопок по очереди */
         @keyframes fadeIn {
@@ -168,12 +185,12 @@
     <div class="container">
         <!-- Верхняя карточка -->
         <div class="header">
-            <img src="logo.png" class="app-icon" alt="App Icon">
+            <img src="logo.png" class="app-icon" alt="App Icon" onerror="this.style.display='none'">
             <h1>Установка приложений</h1>
             <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Сюда скрипт сам добавит 10 кнопок -->
+        <!-- Контейнер для 10 кнопок -->
         <div id="buttons-container"></div>
 
         <!-- Блок визуальной инструкции -->
@@ -189,87 +206,59 @@
         </div>
     </div>
 
-    <!-- БЛОК ДЛЯ БЫСТРОГО РЕДАКТИРОВАНИЯ КНОПОК И ЛОГИКИ -->
     <script>
-        // Расширенный список приложений (ровно 10 элементов)
+        // Защищенный список приложений с короткими кодами для буквенных заглушек
         const apps = [
-            { 
-                title: "Установить MAX", 
-                logoUrl: "https://max.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить VK", 
-                logoUrl: "https://vk.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Авито", 
-                logoUrl: "https://avito.st", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Приложение 4", 
-                logoUrl: "https://unsplash.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Приложение 5", 
-                logoUrl: "https://unsplash.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Приложение 6", 
-                logoUrl: "https://unsplash.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Приложение 7", 
-                logoUrl: "https://unsplash.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Приложение 8", 
-                logoUrl: "https://unsplash.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Приложение 9", 
-                logoUrl: "https://unsplash.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            },
-            { 
-                title: "Установить Приложение 10", 
-                logoUrl: "https://unsplash.com", 
-                manifestUrl: "https://githubusercontent.com" 
-            }
+            { title: "Установить MAX", code: "MX", logoUrl: "https://max.com", manifestUrl: "#" },
+            { title: "Установить VK", code: "VK", logoUrl: "https://vk.com", manifestUrl: "#" },
+            { title: "Установить Авито", code: "АВ", logoUrl: "https://avito.st", manifestUrl: "#" },
+            { title: "Установить Приложение 4", code: "04", logoUrl: "", manifestUrl: "#" },
+            { title: "Установить Приложение 5", code: "05", logoUrl: "", manifestUrl: "#" },
+            { title: "Установить Приложение 6", code: "06", logoUrl: "", manifestUrl: "#" },
+            { title: "Установить Приложение 7", code: "07", logoUrl: "", manifestUrl: "#" },
+            { title: "Установить Приложение 8", code: "08", logoUrl: "", manifestUrl: "#" },
+            { title: "Установить Приложение 9", code: "09", logoUrl: "", manifestUrl: "#" },
+            { title: "Установить Приложение 10", code: "10", logoUrl: "", manifestUrl: "#" }
         ];
 
-        // Автоматическая генерация кнопок
         const container = document.getElementById('buttons-container');
+        
         apps.forEach((app, index) => {
             const btn = document.createElement('a');
             btn.className = 'btn-install';
-            btn.href = `itms-services://?action=download-manifest&url=${app.manifestUrl}`;
+            btn.href = `itms-services://?action=download-manifest&url=${encodeURIComponent(app.manifestUrl)}`;
             
-            // Создание и настройка элемента иконки слева
-            const img = document.createElement('img');
-            img.className = 'btn-icon';
-            img.src = app.logoUrl;
-            img.alt = "";
+            // Если ссылка на логотип передана — пытаемся загрузить картинку
+            if (app.logoUrl) {
+                const img = document.createElement('img');
+                img.className = 'btn-icon';
+                img.src = app.logoUrl;
+                img.alt = "";
+                
+                // Если картинка сломается/заблокируется при загрузке — заменяем её на текстовую заглушку прямо на лету
+                img.onerror = function() {
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'btn-icon-placeholder';
+                    placeholder.textContent = app.code;
+                    btn.replaceChild(placeholder, img);
+                };
+                btn.appendChild(img);
+            } else {
+                // Если картинки изначально нет — сразу строим красивую заглушку с кодом приложения
+                const placeholder = document.createElement('div');
+                placeholder.className = 'btn-icon-placeholder';
+                placeholder.textContent = app.code;
+                btn.appendChild(placeholder);
+            }
             
-            // Создание текстового узла
+            // Добавляем текст кнопки
             const textNode = document.createTextNode(app.title);
-            
-            // Сборка кнопки: сначала логотип, затем текст
-            btn.appendChild(img);
             btn.appendChild(textNode);
             
-            // Каскадная задержка появления кнопок
-            btn.style.animationDelay = `${0.2 + (index * 0.1)}s`;
+            // Каскадная задержка анимации
+            btn.style.animationDelay = `${0.2 + (index * 0.08)}s`;
             
             container.appendChild(btn);
         });
 
-        // Детектор браузера Safari на iOS
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        // Проверка Safari на iOS
