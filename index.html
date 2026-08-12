@@ -24,7 +24,7 @@
             background: #1c1c1e; /* Темно-серый фон карточки (iOS Dark Style) */
             padding: 25px;
             border-radius: 24px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             box-sizing: border-box;
             margin: 20px 0; /* Отступы сверху и снизу для длинных списков */
             
@@ -53,74 +53,101 @@
             border-radius: 18px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             margin-bottom: 15px;
-            object-fit: cover;
         }
         h1 {
             font-size: 24px;
             margin: 0 0 8px 0;
-            font-weight: 600;
         }
         .subtitle {
             color: #8e8e93; /* Приглушенный серый цвет */
             font-size: 14px;
             margin: 0;
-            line-height: 1.4;
         }
-        .instruction-list {
-            list-style: none;
-            padding: 0;
-            margin: 25px 0;
+        
+        /* Контейнер для кнопок */
+        #buttons-container {
+            margin-bottom: 35px;
         }
-        .instruction-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-            font-size: 15px;
-            line-height: 1.4;
+        
+        /* Стили кнопок — прописаны жестко в HTML и видны всегда */
+        .btn-install {
+            display: flex; /* Использование flex для выравнивания иконки и текста */
+            align-items: center;
+            justify-content: center;
+            background-color: #0a84ff; /* Яркий синий цвет для темной темы */
+            color: white;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 12px; /* Отступ между кнопками */
+            transition: background-color 0.2s, transform 0.1s;
         }
-        .step-number {
-            background-color: #2c2c2e;
-            color: #0a84ff;
-            font-weight: bold;
-            min-width: 24px;
+        .btn-install:last-child {
+            margin-bottom: 0; /* У последней кнопки отступ снизу убирается */
+        }
+        .btn-install:hover {
+            background-color: #0070e3;
+        }
+        .btn-install:active {
+            transform: scale(0.98); /* Эффект легкого нажатия */
+        }
+
+        /* Аккуратная текстовая заглушка под картинку */
+        .btn-icon-placeholder {
+            width: 24px;
             height: 24px;
-            border-radius: 50%;
+            border-radius: 7px; /* Скругление squircle */
+            margin-right: 10px; /* Отступ от текста кнопки */
+            background: rgba(255, 255, 255, 0.15); /* Полупрозрачный фон */
+            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
-            font-size: 13px;
+            font-size: 11px;
+            font-weight: 700;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .instruction-title {
+            font-size: 18px;
+            font-weight: 700;
+            border-top: 1px solid #38383a; /* Темный разделитель */
+            padding-top: 20px;
+            margin-bottom: 20px;
+        }
+        .step {
+            margin-bottom: 15px;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .step-num {
+            display: inline-block;
+            background: #2c2c2e; /* Темная подложка для номера шага */
+            color: #0a84ff; /* Синий акцент для цифры */
+            font-weight: 700;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            border-radius: 50%;
+            font-size: 12px;
+            margin-right: 10px;
             flex-shrink: 0;
         }
-        .btn {
-            display: block;
-            width: 100%;
-            background-color: #0a84ff; /* Родной синий цвет iOS */
-            color: #ffffff;
-            text-align: center;
-            padding: 16px;
-            border-radius: 14px;
-            font-size: 16px;
+        .step-text {
+            font-size: 15px;
             font-weight: 600;
-            text-decoration: none;
-            box-sizing: border-box;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
         }
-        .btn:hover {
-            background-color: #0071e3;
-        }
-        .btn:active {
-            transform: scale(0.98);
-        }
-        .warning-box {
-            background-color: rgba(255, 159, 10, 0.15);
-            border-left: 4px solid #ff9f0a;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            font-size: 13px;
-            color: #ff9f0a;
+        .step-desc {
+            color: #8e8e93; /* Приглушенный текст описания */
+            font-size: 14px;
+            margin: 0 0 0 34px;
             line-height: 1.4;
         }
     </style>
@@ -128,37 +155,87 @@
 <body>
 
     <div class="container">
+        <!-- Верхняя карточка -->
         <div class="header">
-            <!-- Подключение иконки напрямую из вашего репозитория -->
-            <img src="logo.png" alt="shurikApp Иконка" class="app-icon">
-            <h1>Установка shurikApp</h1>
-            <p class="subtitle">Инструкция по установке корпоративного приложения на iOS-устройство</p>
+            <img src="logo.png" class="app-icon" alt="App Icon" onerror="this.style.display='none'">
+            <h1>Установка приложений</h1>
+            <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <ul class="instruction-list">
-            <li class="instruction-item">
-                <span class="step-number">1</span>
-                <span>Нажмите синюю кнопку <strong>«Установить приложение»</strong> ниже и подтвердите запрос во всплывающем окне системы.</span>
-            </li>
-            <li class="instruction-item">
-                <span class="step-number">2</span>
-                <span>Перейдите на домашний экран iPhone и дождитесь, пока иконка приложения полностью скачается и станет активной.</span>
-            </li>
-            <li class="instruction-item">
-                <span class="step-number">3</span>
-                <span>Если при запуске появится ошибка «Ненадежный корпоративный разработчик», откройте <strong>Настройки ➡️ Основные ➡️ VPN и управление устройством</strong>.</span>
-            </li>
-            <li class="instruction-item">
-                <span class="step-number">4</span>
-                <span>Найдите профиль разработчика в списке и нажмите кнопку <strong>«Доверять»</strong>.</span>
-            </li>
-        </ul>
+        <!-- Контейнер со всеми 10 кнопками напрямую на чистом HTML -->
+        <div id="buttons-container">
+            
+            <!-- Кнопка 1: MAX -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">MX</div>
+                Установить MAX
+            </a>
 
-        <!-- Важная ссылка itms-services для развертывания через manifest.plist -->
-        <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn">Установить приложение</a>
+            <!-- Кнопка 2: VK -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">VK</div>
+                Установить VK
+            </a>
 
-        <div class="warning-box">
-            <strong>Обратите внимание:</strong> Для успешной установки ваш UUID устройства должен быть внесен в профиль обеспечения (Provisioning Profile) данного приложения.
+            <!-- Кнопка 3: Авито -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">АВ</div>
+                Установить Авито
+            </a>
+
+            <!-- Кнопка 4: СБЕР -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">СБ</div>
+                Установить СБЕР
+            </a>
+
+            <!-- Кнопка 5: Т-Банк -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">ТБ</div>
+                Установить Т-Банк
+            </a>
+
+            <!-- Кнопка 6: Альфа-Банк -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">АБ</div>
+                Установить Альфа-Банк
+            </a>
+
+            <!-- Кнопка 7: Почта Mail -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">МЛ</div>
+                Установить Почта Mail
+            </a>
+
+            <!-- Кнопка 8: Яндекс Пэй -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">ЯП</div>
+                Установить Яндекс Пэй
+            </a>
+
+            <!-- Кнопка 9: Ozon Банк -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">ОЗ</div>
+                Установить Ozon Банк
+            </a>
+
+            <!-- Кнопка 10: Wildberries -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+                <div class="btn-icon-placeholder">WB</div>
+                Установить Wildberries
+            </a>
+
+        </div>
+
+        <!-- Блок визуальной инструкции -->
+        <div class="instruction-title">Инструкция по установке</div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-num">1</span>
+                <span class="step-text">Запустите установку</span>
+            </div>
+            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1-2 минуты, пока иконка появится на экране.</p>
         </div>
     </div>
 
