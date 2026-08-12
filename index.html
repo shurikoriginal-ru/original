@@ -26,6 +26,7 @@
             border-radius: 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             box-sizing: border-box;
+            margin: 20px 0; /* Отступы сверху и снизу для длинных списков */
             
             /* Ключевые стили для плавной анимации */
             opacity: 0;
@@ -69,7 +70,7 @@
         
         /* Стили кнопок */
         .btn-install {
-            display: flex; /* Используем flex для выравнивания иконки и текста */
+            display: flex; /* Использование flex для выравнивания иконки и текста */
             align-items: center;
             justify-content: center;
             background-color: #0a84ff; /* Яркий синий цвет для темной темы */
@@ -100,7 +101,7 @@
         .btn-icon {
             width: 24px;
             height: 24px;
-            border-radius: 7px; /* Идеальное скругление для размера 24x24 */
+            border-radius: 7px; /* Идеальное пропорциональное скругление для размера 24x24 */
             margin-right: 10px; /* Отступ между логотипом и текстом */
             object-fit: cover;
             flex-shrink: 0;
@@ -172,7 +173,7 @@
             <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Сюда скрипт сам добавит нужное количество кнопок -->
+        <!-- Сюда скрипт сам добавит 10 кнопок -->
         <div id="buttons-container"></div>
 
         <!-- Блок визуальной инструкции -->
@@ -190,7 +191,7 @@
 
     <!-- БЛОК ДЛЯ БЫСТРОГО РЕДАКТИРОВАНИЯ КНОПОК И ЛОГИКИ -->
     <script>
-        // Обновленный список приложений с новыми названиями и иконками
+        // Расширенный список приложений (ровно 10 элементов)
         const apps = [
             { 
                 title: "Установить MAX", 
@@ -206,6 +207,41 @@
                 title: "Установить Авито", 
                 logoUrl: "https://avito.st", 
                 manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 4", 
+                logoUrl: "https://unsplash.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 5", 
+                logoUrl: "https://unsplash.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 6", 
+                logoUrl: "https://unsplash.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 7", 
+                logoUrl: "https://unsplash.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 8", 
+                logoUrl: "https://unsplash.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 9", 
+                logoUrl: "https://unsplash.com", 
+                manifestUrl: "https://githubusercontent.com" 
+            },
+            { 
+                title: "Установить Приложение 10", 
+                logoUrl: "https://unsplash.com", 
+                manifestUrl: "https://githubusercontent.com" 
             }
         ];
 
@@ -216,16 +252,16 @@
             btn.className = 'btn-install';
             btn.href = `itms-services://?action=download-manifest&url=${app.manifestUrl}`;
             
-            // Создаем и настраиваем элемент иконки слева
+            // Создание и настройка элемента иконки слева
             const img = document.createElement('img');
             img.className = 'btn-icon';
             img.src = app.logoUrl;
             img.alt = "";
             
-            // Создаем текстовый узел
+            // Создание текстового узла
             const textNode = document.createTextNode(app.title);
             
-            // Собираем кнопку: сначала логотип, затем текст
+            // Сборка кнопки: сначала логотип, затем текст
             btn.appendChild(img);
             btn.appendChild(textNode);
             
@@ -237,17 +273,3 @@
 
         // Детектор браузера Safari на iOS
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        const isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
-
-        if (isIOS && !isSafari) {
-            const stepBlock = document.getElementById('installation-step');
-            const stepDesc = document.getElementById('step-description');
-            
-            stepBlock.classList.add('safari-warning');
-            stepBlock.querySelector('.step-text').textContent = 'Внимание: откройте в Safari';
-            stepDesc.innerHTML = 'Прямая установка приложений не поддерживается в текущем браузере. <strong>Скопируйте ссылку на этот сайт и откройте её строго через стандартное приложение Safari</strong>, иначе кнопка установки не сработает.';
-        }
-    </script>
-
-</body>
-</html>
