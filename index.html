@@ -69,38 +69,36 @@
             margin-bottom: 35px;
         }
         
-        /* Стили кнопок — прописаны жестко в HTML и видны всегда */
+        /* Базовые стили кнопок — теперь цвет задается индивидуально */
         .btn-install {
             display: flex; /* Использование flex для выравнивания иконки и текста */
             align-items: center;
             justify-content: center;
-            background-color: #0a84ff; /* Яркий синий цвет для темной темы */
-            color: white;
             text-decoration: none;
             padding: 12px 16px;
             border-radius: 14px;
             font-weight: 600;
             font-size: 16px;
             margin-bottom: 12px; /* Отступ между кнопками */
-            transition: background-color 0.2s, transform 0.1s;
+            transition: filter 0.2s, transform 0.1s;
         }
         .btn-install:last-child {
             margin-bottom: 0; /* У последней кнопки отступ снизу убирается */
         }
         .btn-install:hover {
-            background-color: #0070e3;
+            filter: brightness(1.1); /* Легкое осветление кнопки при наведении */
         }
         .btn-install:active {
             transform: scale(0.98); /* Эффект легкого нажатия */
         }
 
-        /* Аккуратная текстовая заглушка под картинку */
+        /* Аккуратная текстовая заглушка под картинку внутри брендированной кнопки */
         .btn-icon-placeholder {
             width: 24px;
             height: 24px;
             border-radius: 7px; /* Скругление squircle */
             margin-right: 10px; /* Отступ от текста кнопки */
-            background: rgba(255, 255, 255, 0.15); /* Полупрозрачный фон */
+            background: rgba(255, 255, 255, 0.2); /* Полупрозрачный контрастный фон для букв */
             color: #ffffff;
             display: flex;
             align-items: center;
@@ -110,6 +108,25 @@
             flex-shrink: 0;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
+        /* ИНДИВИДУАЛЬНЫЕ БРЕНДОВЫЕ ЦВЕТА КНОПОК */
+        .btn-max { background-color: #002df1; color: #ffffff; }
+        .btn-vk { background-color: #0077ff; color: #ffffff; }
+        .btn-avito { background-color: #00aa46; color: #ffffff; }
+        .btn-sber { background-color: #21a038; color: #ffffff; }
+        
+        /* Т-Банк: черные буквы текста и черные буквы в заглушке */
+        .btn-tbank { background-color: #ffdd2d; color: #000000; }
+        .btn-tbank .btn-icon-placeholder { background: rgba(0, 0, 0, 0.1); color: #000000; border-color: rgba(0, 0, 0, 0.05); }
+        
+        .btn-alfa { background-color: #ef3124; color: #ffffff; }
+        .btn-mail { background-color: #005ffc; color: #ffffff; }
+        
+        /* Яндекс Пэй: черная кнопка с неоновым красным контуром бренда */
+        .btn-ypay { background-color: #000000; color: #ffffff; border: 1px solid #ff3333; box-shadow: 0 0 8px rgba(255, 51, 51, 0.2); }
+        
+        .btn-ozon { background-color: #005bff; color: #ffffff; }
+        .btn-wb { background-color: #cb11ab; color: #ffffff; }
         
         .instruction-title {
             font-size: 18px;
@@ -162,65 +179,65 @@
             <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Контейнер со всеми 10 кнопками напрямую на чистом HTML -->
+        <!-- Контейнер со всеми 10 полностью брендированными кнопками -->
         <div id="buttons-container">
             
             <!-- Кнопка 1: MAX -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-max">
                 <div class="btn-icon-placeholder">MX</div>
                 Установить MAX
             </a>
 
             <!-- Кнопка 2: VK -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-vk">
                 <div class="btn-icon-placeholder">VK</div>
                 Установить VK
             </a>
 
             <!-- Кнопка 3: Авито -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-avito">
                 <div class="btn-icon-placeholder">АВ</div>
                 Установить Авито
             </a>
 
             <!-- Кнопка 4: СБЕР -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-sber">
                 <div class="btn-icon-placeholder">СБ</div>
                 Установить СБЕР
             </a>
 
             <!-- Кнопка 5: Т-Банк -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-tbank">
                 <div class="btn-icon-placeholder">ТБ</div>
                 Установить Т-Банк
             </a>
 
             <!-- Кнопка 6: Альфа-Банк -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-alfa">
                 <div class="btn-icon-placeholder">АБ</div>
                 Установить Альфа-Банк
             </a>
 
             <!-- Кнопка 7: Почта Mail -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-mail">
                 <div class="btn-icon-placeholder">МЛ</div>
                 Установить Почта Mail
             </a>
 
             <!-- Кнопка 8: Яндекс Пэй -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-ypay">
                 <div class="btn-icon-placeholder">ЯП</div>
                 Установить Яндекс Пэй
             </a>
 
             <!-- Кнопка 9: Ozon Банк -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-ozon">
                 <div class="btn-icon-placeholder">ОЗ</div>
                 Установить Ozon Банк
             </a>
 
             <!-- Кнопка 10: Wildberries -->
-            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install">
+            <a href="itms-services://?action=download-manifest&url=https://example.com" class="btn-install btn-wb">
                 <div class="btn-icon-placeholder">WB</div>
                 Установить Wildberries
             </a>
