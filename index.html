@@ -7,246 +7,136 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #000000; /* Глубокий черный фон */
-            color: #f5f5f7; /* Светлый основной текст */
+            background-color: #000000;
+            color: #f5f5f7;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Центрирование по вертикали */
-            min-height: 100vh; /* Высота во весь экран */
+            justify-content: center;
+            min-height: 100vh;
             box-sizing: border-box;
         }
         .container {
             max-width: 450px;
             width: 100%;
-            background: #1c1c1e; /* Темно-серый фон карточки (iOS Dark Style) */
+            background: #1c1c1e;
             padding: 25px;
             border-radius: 24px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             box-sizing: border-box;
-            margin: 20px 0; /* Отступы сверху и снизу для длинных списков */
-            
-            /* Нативная CSS анимация появления карточки */
+            margin: 20px 0;
             animation: fadeInUp 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
-        
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+        .header { text-align: center; margin-bottom: 25px; }
         .app-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            margin-bottom: 15px;
+            width: 80px; height: 80px; border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin-bottom: 15px;
         }
-        h1 {
-            font-size: 24px;
-            margin: 0 0 8px 0;
-        }
-        .subtitle {
-            color: #8e8e93; /* Приглушенный серый цвет */
-            font-size: 14px;
-            margin: 0;
-        }
-        
-        /* Контейнер для кнопок */
-        #buttons-container {
-            margin-bottom: 35px;
-        }
-        
-        /* Базовые стили кнопок */
+        h1 { font-size: 24px; margin: 0 0 8px 0; }
+        .subtitle { color: #8e8e93; font-size: 14px; margin: 0; }
+        #buttons-container { margin-bottom: 35px; }
         .btn-install {
-            display: flex; /* Использование flex для выравнивания иконки и текста */
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            padding: 12px 16px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 12px; /* Отступ между кнопками */
-            transition: filter 0.2s, transform 0.1s;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; padding: 12px 16px;
+            border-radius: 14px; font-weight: 600; font-size: 16px;
+            margin-bottom: 12px; transition: filter 0.2s, transform 0.1s;
         }
-        .btn-install:last-child {
-            margin-bottom: 0; /* У последней кнопки отступ снизу убирается */
-        }
-        .btn-install:hover {
-            filter: brightness(1.1); /* Легкое осветление кнопки при наведении */
-        }
-        .btn-install:active {
-            transform: scale(0.98); /* Эффект легкого нажатия */
-        }
-
-        /* Аккуратные мини-иконки в стиле iOS squircle */
+        .btn-install:last-child { margin-bottom: 0; }
+        .btn-install:hover { filter: brightness(1.1); }
+        .btn-install:active { transform: scale(0.98); }
         .btn-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 7px; /* Идеальное пропорциональное скругление для размера 24x24 */
-            margin-right: 10px; /* Отступ между логотипом и текстом */
-            object-fit: cover;
-            flex-shrink: 0;
+            width: 24px; height: 24px; border-radius: 7px;
+            margin-right: 10px; object-fit: cover; flex-shrink: 0;
         }
-        
-        /* ИНДИВИДУАЛЬНЫЕ БРЕНДОВЫЕ ЦВЕТА КНОПОК */
+        /* Цвета кнопок */
         .btn-max { background-color: #002df1; color: #ffffff; }
         .btn-vk { background-color: #0077ff; color: #ffffff; }
-        
-        /* Авито: белая кнопка с черным текстом */
         .btn-avito { background-color: #ffffff; color: #000000; }
-        
         .btn-sber { background-color: #21a038; color: #ffffff; }
-        .btn-tbank { background-color: #ffdd2d; color: #000000; } /* Темные буквы для контраста */
+        .btn-tbank { background-color: #ffdd2d; color: #000000; }
         .btn-alfa { background-color: #ef3124; color: #ffffff; }
         .btn-mail { background-color: #005ffc; color: #ffffff; }
-        
-        /* Яндекс Пэй: черная кнопка с неоновым красным контуром бренда */
-        .btn-ypay { background-color: #000000; color: #ffffff; border: 1px solid #ff3333; box-shadow: 0 0 8px rgba(255, 51, 51, 0.2); }
-        
+        .btn-ypay {
+            background-color: #000000; color: #ffffff;
+            border: 1px solid #ff3333; box-shadow: 0 0 8px rgba(255, 51, 51, 0.2);
+        }
         .btn-ozon { background-color: #005bff; color: #ffffff; }
         .btn-wb { background-color: #cb11ab; color: #ffffff; }
-        
+
         .instruction-title {
-            font-size: 18px;
-            font-weight: 700;
-            border-top: 1px solid #38383a; /* Темный разделитель */
-            padding-top: 20px;
-            margin-bottom: 20px;
+            font-size: 18px; font-weight: 700; border-top: 1px solid #38383a;
+            padding-top: 20px; margin-bottom: 20px;
         }
-        .step {
-            margin-bottom: 15px;
-        }
-        .step-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
+        .step { margin-bottom: 15px; }
+        .step-header { display: flex; align-items: center; margin-bottom: 5px; }
         .step-num {
-            display: inline-block;
-            background: #2c2c2e; /* Темная подложка для номера шага */
-            color: #0a84ff; /* Синий акцент для цифры */
-            font-weight: 700;
-            width: 24px;
-            height: 24px;
-            text-align: center;
-            line-height: 24px;
-            border-radius: 50%;
-            font-size: 12px;
-            margin-right: 10px;
-            flex-shrink: 0;
+            display: inline-block; background: #2c2c2e; color: #0a84ff;
+            font-weight: 700; width: 24px; height: 24px; text-align: center;
+            line-height: 24px; border-radius: 50%; font-size: 12px;
+            margin-right: 10px; flex-shrink: 0;
         }
-        .step-text {
-            font-size: 15px;
-            font-weight: 600;
-        }
+        .step-text { font-size: 15px; font-weight: 600; }
         .step-desc {
-            color: #8e8e93; /* Приглушенный текст описания */
-            font-size: 14px;
-            margin: 0 0 0 34px;
-            line-height: 1.4;
+            color: #8e8e93; font-size: 14px; margin: 0 0 0 34px; line-height: 1.4;
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <!-- Верхняя карточка -->
         <div class="header">
             <img src="logo.png" class="app-icon" alt="App Icon" onerror="this.style.display='none'">
             <h1>Установка приложений</h1>
             <p class="subtitle">Выберите приложение для iOS</p>
         </div>
 
-        <!-- Контейнер со всеми 10 полностью брендированными кнопками -->
         <div id="buttons-container">
-            
-            <!-- Кнопка 1: MAX -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-max">
-                <img src="MAX logo .png" class="btn-icon" alt="">
-                Установить MAX
+            <!-- Замени URL на реальные пути к .plist файлам -->
+            <a href="itms-services://?action=download-manifest&url=https://example.com/max.plist" class="btn-install btn-max">
+                <img src="MAX logo.png" class="btn-icon" alt=""> Установить MAX
             </a>
-
-            <!-- Кнопка 2: VK -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-vk">
-                <img src="VK logo.png" class="btn-icon" alt="">
-                Установить VK
+            <a href="itms-services://?action=download-manifest&url=https://example.com/vk.plist" class="btn-install btn-vk">
+                <img src="VK logo.png" class="btn-icon" alt=""> Установить VK
             </a>
-
-            <!-- Кнопка 3: Авито (БЕЛАЯ КНОПКА) -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-avito">
-                <img src="Avito logo.jpg" class="btn-icon" alt="">
-                Установить Авито
+            <a href="itms-services://?action=download-manifest&url=https://example.com/avito.plist" class="btn-install btn-avito">
+                <img src="Avito logo.jpg" class="btn-icon" alt=""> Установить Авито
             </a>
-
-            <!-- Кнопка 4: СБЕР -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-sber">
-                <img src="SBER logo.jpg" class="btn-icon" alt="">
-                Установить СБЕР
+            <a href="itms-services://?action=download-manifest&url=https://example.com/sber.plist" class="btn-install btn-sber">
+                <img src="SBER logo.jpg" class="btn-icon" alt=""> Установить СБЕР
             </a>
-
-            <!-- Кнопка 5: Т-Банк -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-tbank">
-                <img src="Tbank logo.jpg" class="btn-icon" alt="">
-                Установить Т-Банк
+            <a href="itms-services://?action=download-manifest&url=https://example.com/tbank.plist" class="btn-install btn-tbank">
+                <img src="Tbank logo.jpg" class="btn-icon" alt=""> Установить Т-Банк
             </a>
-
-            <!-- Кнопка 6: Альфа-Банк -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-alfa">
-                <img src="Alfa Bank logo.jpg" class="btn-icon" alt="">
-                Установить Альфа-Банк
+            <a href="itms-services://?action=download-manifest&url=https://example.com/alfa.plist" class="btn-install btn-alfa">
+                <img src="Alfa Bank logo.jpg" class="btn-icon" alt=""> Установить Альфа-Банк
             </a>
-
-            <!-- Кнопка 7: Почта Mail -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-mail">
-                <img src="Mail logo.jpg" class="btn-icon" alt="">
-                Установить Почта Mail
+            <a href="itms-services://?action=download-manifest&url=https://example.com/mail.plist" class="btn-install btn-mail">
+                <img src="Mail logo.jpg" class="btn-icon" alt=""> Установить Почта Mail
             </a>
-
-            <!-- Кнопка 8: Яндекс Пэй -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-ypay">
-                <img src="Yandex Pay logo.png" class="btn-icon" alt="">
-                Установить Яндекс Пэй
+            <a href="itms-services://?action=download-manifest&url=https://example.com/ypay.plist" class="btn-install btn-ypay">
+                <img src="Yandex Pay logo.png" class="btn-icon" alt=""> Установить Яндекс Пэй
             </a>
-
-            <!-- Кнопка 9: Ozon Банк -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-ozon">
-                <img src="ozon bank logo.jpg" class="btn-icon" alt="">
-                Установить Ozon Банк
+            <a href="itms-services://?action=download-manifest&url=https://example.com/ozon.plist" class="btn-install btn-ozon">
+                <img src="ozon bank logo.jpg" class="btn-icon" alt=""> Установить Ozon Банк
             </a>
-
-            <!-- Кнопка 10: Wildberries -->
-            <a href="itms-services://?action=download-manifest&url=manifest.plist" class="btn-install btn-wb">
-                <img src="WB logo.png" class="btn-icon" alt="">
-                Установить Wildberries
+            <a href="itms-services://?action=download-manifest&url=https://example.com/wb.plist" class="btn-install btn-wb">
+                <img src="WB logo.png" class="btn-icon" alt=""> Установить Wildberries
             </a>
-
         </div>
 
-        <!-- Блок визуальной инструкции -->
         <div class="instruction-title">Инструкция по установке</div>
-
         <div class="step">
             <div class="step-header">
                 <span class="step-num">1</span>
                 <span class="step-text">Запустите установку</span>
             </div>
-            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1-2 минуты, пока иконка появится на экране.</p>
+            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1–2 минуты, пока иконка появится на экране.</p>
         </div>
     </div>
-
 </body>
 </html>
