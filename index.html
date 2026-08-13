@@ -47,14 +47,6 @@
             text-decoration: none; padding: 12px 16px;
             border-radius: 14px; font-weight: 600; font-size: 16px;
             margin-bottom: 12px; transition: filter 0.2s, transform 0.1s;
-            visibility: hidden; /* скрываем по умолчанию */
-            opacity: 0;
-            pointer-events: none; /* чтобы не кликали по скрытым кнопкам */
-        }
-        .btn-install.visible {
-            visibility: visible;
-            opacity: 1;
-            pointer-events: auto;
         }
         .btn-install:last-child { margin-bottom: 0; }
         .btn-install:hover { filter: brightness(1.1); }
@@ -64,7 +56,7 @@
             margin-right: 10px; object-fit: cover; flex-shrink: 0;
         }
 
-        /* Базовые цвета кнопок (1–10) */
+        /* Цвета кнопок */
         .btn-max { background-color: #002df1; color: #ffffff; }
         .btn-vk { background-color: #0077ff; color: #ffffff; }
         .btn-avito { background-color: #ffffff; color: #000000; }
@@ -79,24 +71,17 @@
         .btn-ozon { background-color: #005bff; color: #ffffff; }
         .btn-wb { background-color: #cb11ab; color: #ffffff; }
 
-        /* Новые кнопки (11–19): фирменные цвета, единый стиль */
         .btn-chatgpt {
             background-color: #ffffff;
             color: #000000;
             border: 1px solid #e3e3e3;
         }
-        .btn-vk-live {
-            background-color: #ff283e; color: #ffffff;
-        }
-        .btn-happ {
-            background-color: #e5e5ea; color: #1a1a1a;
-        }
+        .btn-vk-live { background-color: #ff283e; color: #ffffff; }
+        .btn-happ { background-color: #e5e5ea; color: #1a1a1a; }
         .btn-vtb { background-color: #0a2a73; color: #ffffff; }
         .btn-spotify { background-color: #1db954; color: #000000; }
         .btn-vk-clips { background-color: #cc41f3; color: #ffffff; }
-        .btn-vk-music {
-            background-color: #9b47e0; color: #ffffff;
-        }
+        .btn-vk-music { background-color: #9b47e0; color: #ffffff; }
         .btn-vk-video { background-color: #ff2333; color: #ffffff; }
         .btn-vk-messenger { background-color: #00c2ff; color: #ffffff; }
 
@@ -200,35 +185,33 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const params = new URLSearchParams(window.location.search);
-        const showParam = params.get('show');
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const showParam = params.get('show');
 
-        if (!showParam) {
-            // Если параметра нет — можно показать все кнопки по умолчанию
-            return;
-        }
-
-        const idsToShow = showParam
-            .split(',')
-            .map(s => s.trim())
-            .filter(s => s !== '')
-            .map(Number);
-
-        const container = document.getElementById('buttons-container');
-        const buttons = Array.from(container.querySelectorAll('.btn-install'));
-
-        // Очищаем контейнер
-        container.innerHTML = '';
-
-        // Вставляем только нужные кнопки в порядке их ID из параметра
-        idsToShow.forEach(id => {
-            const btn = buttons.find(b => parseInt(b.getAttribute('data-id'), 10) === id);
-            if (btn) {
-                container.appendChild(btn);
+            // Если параметра нет — ничего не делаем: будут видны все кнопки из HTML
+            if (!showParam) {
+                return;
             }
+
+            const idsToShow = showParam
+                .split(',')
+                .map(s => s.trim())
+                .filter(s => s !== '')
+                .map(Number);
+
+            const container = document.getElementById('buttons-container');
+            const buttons = Array.from(container.querySelectorAll('.btn-install'));
+
+            // Очищаем контейнер и добавляем только нужные кнопки по порядку из параметра
+            container.innerHTML = '';
+            idsToShow.forEach(id => {
+                const btn = buttons.find(b => parseInt(b.getAttribute('data-id'), 10) === id);
+                if (btn) {
+                    container.appendChild(btn);
+                }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
