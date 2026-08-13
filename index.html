@@ -41,11 +41,20 @@
         h1 { font-size: 24px; margin: 0 0 8px 0; }
         .subtitle { color: #8e8e93; font-size: 14px; margin: 0; }
         #buttons-container { margin-bottom: 35px; }
+
         .btn-install {
             display: flex; align-items: center; justify-content: center;
             text-decoration: none; padding: 12px 16px;
             border-radius: 14px; font-weight: 600; font-size: 16px;
             margin-bottom: 12px; transition: filter 0.2s, transform 0.1s;
+            visibility: hidden; /* скрываем по умолчанию */
+            opacity: 0;
+            pointer-events: none; /* чтобы не кликали по скрытым кнопкам */
+        }
+        .btn-install.visible {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
         }
         .btn-install:last-child { margin-bottom: 0; }
         .btn-install:hover { filter: brightness(1.1); }
@@ -119,63 +128,63 @@
 
         <div id="buttons-container">
             <!-- Кнопки 1–10 -->
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/max.plist" class="btn-install btn-max">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/max.plist" class="btn-install btn-max" data-id="1">
                 <img src="MAX logo.png" class="btn-icon" alt=""> Установить MAX
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk.plist" class="btn-install btn-vk">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk.plist" class="btn-install btn-vk" data-id="2">
                 <img src="VK logo.png" class="btn-icon" alt=""> Установить VK
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/avito.plist" class="btn-install btn-avito">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/avito.plist" class="btn-install btn-avito" data-id="3">
                 <img src="Avito logo.jpg" class="btn-icon" alt=""> Установить Авито
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/sber.plist" class="btn-install btn-sber">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/sber.plist" class="btn-install btn-sber" data-id="4">
                 <img src="SBER logo.jpg" class="btn-icon" alt=""> Установить СБЕР
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/tbank.plist" class="btn-install btn-tbank">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/tbank.plist" class="btn-install btn-tbank" data-id="5">
                 <img src="Tbank logo.jpg" class="btn-icon" alt=""> Установить Т-Банк
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/alfa.plist" class="btn-install btn-alfa">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/alfa.plist" class="btn-install btn-alfa" data-id="6">
                 <img src="Alfa Bank logo.jpg" class="btn-icon" alt=""> Установить Альфа-Банк
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/mail.plist" class="btn-install btn-mail">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/mail.plist" class="btn-install btn-mail" data-id="7">
                 <img src="Mail logo.jpg" class="btn-icon" alt=""> Установить Почта Mail
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ypay.plist" class="btn-install btn-ypay">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ypay.plist" class="btn-install btn-ypay" data-id="8">
                 <img src="Yandex Pay logo.png" class="btn-icon" alt=""> Установить Яндекс Пэй
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ozon.plist" class="btn-install btn-ozon">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ozon.plist" class="btn-install btn-ozon" data-id="9">
                 <img src="ozon bank logo.jpg" class="btn-icon" alt=""> Установить Ozon Банк
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/wb.plist" class="btn-install btn-wb">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/wb.plist" class="btn-install btn-wb" data-id="10">
                 <img src="WB logo.png" class="btn-icon" alt=""> Установить Wildberries
             </a>
 
-            <!-- Кнопки 11–19: вставь свои ссылки на raw .plist вместо заглушек -->
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_CHATGPT.plist" class="btn-install btn-chatgpt">
+            <!-- Кнопки 11–19 -->
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/chatgpt.plist" class="btn-install btn-chatgpt" data-id="11">
                 <img src="ChatGPT logo.png" class="btn-icon" alt=""> Установить ChatGPT
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_VK_LIVE.plist" class="btn-install btn-vk-live">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk_live.plist" class="btn-install btn-vk-live" data-id="12">
                 <img src="VK Live logo.png" class="btn-icon" alt=""> Установить VK Видео Live
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_HAPP.plist" class="btn-install btn-happ">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/happ.plist" class="btn-install btn-happ" data-id="13">
                 <img src="Happ logo.png" class="btn-icon" alt=""> Установить Happ
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_VTB.plist" class="btn-install btn-vtb">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vtb.plist" class="btn-install btn-vtb" data-id="14">
                 <img src="VTB logo.png" class="btn-icon" alt=""> Установить ВТБ
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_SPOTIFY.plist" class="btn-install btn-spotify">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/spotify.plist" class="btn-install btn-spotify" data-id="15">
                 <img src="Spotify logo.png" class="btn-icon" alt=""> Установить Spotify
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_VK_CLIPS.plist" class="btn-install btn-vk-clips">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk_clips.plist" class="btn-install btn-vk-clips" data-id="16">
                 <img src="VK Clips logo.png" class="btn-icon" alt=""> Установить VK Клипы
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_VK_MUSIC.plist" class="btn-install btn-vk-music">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk_music.plist" class="btn-install btn-vk-music" data-id="17">
                 <img src="VK Music logo.png" class="btn-icon" alt=""> Установить VK Music
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_VK_VIDEO.plist" class="btn-install btn-vk-video">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk_video.plist" class="btn-install btn-vk-video" data-id="18">
                 <img src="VK Video logo.png" class="btn-icon" alt=""> Установить VK Видео
             </a>
-            <a href="itms-services://?action=download-manifest&url=ВСТАВЬ_СЮДА_ССЫЛКУ_НА_RAW_VK_MESSENGER.plist" class="btn-install btn-vk-messenger">
+            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk_messenger.plist" class="btn-install btn-vk-messenger" data-id="19">
                 <img src="VK Messenger logo.png" class="btn-icon" alt=""> Установить VK Messenger
             </a>
         </div>
@@ -189,5 +198,26 @@
             <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1–2 минуты, пока иконка появится на экране.</p>
         </div>
     </div>
-</body>
-</html>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const showParam = params.get('show');
+
+            if (!showParam) {
+                // Если параметра нет — ничего не показываем (кнопки уже скрыты в CSS)
+                return;
+            }
+
+            // Парсим список ID: например, "1,3,11" → [1, 3, 11]
+            const idsToShow = showParam
+                .split(',')
+                .map(s => s.trim())
+                .filter(s => s !== '')
+                .map(Number);
+
+            const buttons = document.querySelectorAll('.btn-install');
+            buttons.forEach(btn => {
+                const id = parseInt(btn.getAttribute('data-id'), 10);
+                if (idsToShow.includes(id)) {
+                    btn.classList.add('visible
