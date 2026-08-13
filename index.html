@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -56,7 +55,7 @@
             margin-right: 10px; object-fit: cover; flex-shrink: 0;
         }
 
-        /* Базовые цвета кнопок */
+        /* Базовые цвета кнопок (1 - 10) */
         .btn-max { background-color: #002df1; color: #ffffff; }
         .btn-vk { background-color: #0077ff; color: #ffffff; }
         .btn-avito { background-color: #ffffff; color: #000000; }
@@ -71,42 +70,16 @@
         .btn-ozon { background-color: #005bff; color: #ffffff; }
         .btn-wb { background-color: #cb11ab; color: #ffffff; }
 
-        /* Новые стили под конкретные запросы */
-        .btn-chatgpt {
-            background-color: #ffffff;
-            color: #000000;
-            border: 2px solid #000000;
-        }
-        .btn-vk-live {
-            background: linear-gradient(135deg, #0077ff 0%, #ff4b5b 100%);
-            color: #ffffff;
-        }
-        .btn-happ {
-            background: repeating-linear-gradient(
-                45deg,
-                #f0f0f0,
-                #f0f0f0 10px,
-                #e0e0e0 10px,
-                #e0e0e0 20px
-            );
-            color: #333333;
-        }
-        .btn-vk-clips {
-            background: linear-gradient(90deg, #ffffff 0%, #9b59b6 50%, #3498db 100%);
-            color: #000000;
-        }
-        .btn-vk-music {
-            background: linear-gradient(90deg, #3498db 0%, #9b59b6 40%, #ffffff 100%);
-            color: #000000;
-        }
-        .btn-vk-video {
-            background: linear-gradient(90deg, #ffffff 0%, #ff4b5b 50%, #0077ff 100%);
-            color: #000000;
-        }
-        .btn-vk-messenger {
-            background: linear-gradient(90deg, #ffffff 0%, #4dd0b0 33%, #00c2ff 66%, #0077ff 100%);
-            color: #000000;
-        }
+        /* Новые чистые стили по вашим логотипам (11 - 19) */
+        .btn-chatgpt { background-color: #ffffff; color: #000000; border: 1px solid #e3e3e3; }
+        .btn-vtb { background-color: #0a2a73; color: #ffffff; }
+        .btn-spotify { background-color: #1db954; color: #000000; }
+        .btn-happ { background-color: #252528; color: #ffffff; }
+        .btn-vk-live { background-color: #ff283e; color: #ffffff; }
+        .btn-vk-clips { background-color: #cc41f3; color: #ffffff; }
+        .btn-vk-music { background-color: #f645f7; color: #ffffff; }
+        .btn-vk-video { background-color: #ff2333; color: #ffffff; }
+        .btn-vk-messenger { background-color: #00c2ff; color: #ffffff; }
 
         .instruction-title {
             font-size: 18px; font-weight: 700; border-top: 1px solid #38383a;
@@ -135,80 +108,68 @@
         </div>
 
         <div id="buttons-container">
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/max.plist" class="btn-install btn-max">
+            <!-- 1 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-max">
                 <img src="MAX logo.png" class="btn-icon" alt=""> Установить MAX
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/vk.plist" class="btn-install btn-vk">
+            <!-- 2 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-vk">
                 <img src="VK logo.png" class="btn-icon" alt=""> Установить VK
             </a>
-            
-            <!-- ССЫЛКА ИСПРАВЛЕНА: Путь сокращен до прямого стабильного адреса -->
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/avito.plist" class="btn-install btn-avito">
+            <!-- 3 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-avito">
                 <img src="Avito logo.jpg" class="btn-icon" alt=""> Установить Авито
             </a>
-            
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/sber.plist" class="btn-install btn-sber">
+            <!-- 4 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-sber">
                 <img src="SBER logo.jpg" class="btn-icon" alt=""> Установить СБЕР
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/tbank.plist" class="btn-install btn-tbank">
+            <!-- 5 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-tbank">
                 <img src="Tbank logo.jpg" class="btn-icon" alt=""> Установить Т-Банк
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/alfa.plist" class="btn-install btn-alfa">
+            <!-- 6 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-alfa">
                 <img src="Alfa Bank logo.jpg" class="btn-icon" alt=""> Установить Альфа-Банк
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/mail.plist" class="btn-install btn-mail">
+            <!-- 7 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-mail">
                 <img src="Mail logo.jpg" class="btn-icon" alt=""> Установить Почта Mail
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ypay.plist" class="btn-install btn-ypay">
+            <!-- 8 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-ypay">
                 <img src="Yandex Pay logo.png" class="btn-icon" alt=""> Установить Яндекс Пэй
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/ozon.plist" class="btn-install btn-ozon">
+            <!-- 9 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-ozon">
                 <img src="ozon bank logo.jpg" class="btn-icon" alt=""> Установить Ozon Банк
             </a>
-            <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/shurikoriginal-ru/shurikApp/refs/heads/main/wb.plist" class="btn-install btn-wb">
-                <img src="WB logo.png" class="btn-icon" alt=""> Установить Wildberries
+            <!-- 10 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-wb">
+                <img src="wb logo.jpg" class="btn-icon" alt=""> Установить Wildberries
             </a>
-
-            <!-- Новые кнопки с обновлёнными стилями -->
-            <a href="#" class="btn-install btn-chatgpt">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить ChatGPT
+            <!-- 11 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-chatgpt">
+                <img src="chatgpt logo.png" class="btn-icon" alt=""> Установить ChatGPT
             </a>
-            <a href="#" class="btn-install btn-vk-live">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить VK Видео Live
+            <!-- 12 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-vtb">
+                <img src="vtb logo.png" class="btn-icon" alt=""> Установить ВТБ
             </a>
-            <a href="#" class="btn-install btn-happ">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить Happ
+            <!-- 13 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-spotify">
+                <img src="spotify logo.png" class="btn-icon" alt=""> Установить Spotify
             </a>
-            <!-- Кнопки 14 и 15 оставлены без спецэффектов, чтобы не дублировать логику, но можно добавить при необходимости -->
-            <a href="#" class="btn-install btn-vtb" style="background-color:#003399; color:#ffffff;">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить ВТБ
+            <!-- 14 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-happ">
+                <img src="happ logo.png" class="btn-icon" alt=""> Установить Happ
             </a>
-            <a href="#" class="btn-install btn-spotify" style="background-color:#1db954; color:#ffffff;">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить Spotify
+            <!-- 15 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-vk-live">
+                <img src="vk live logo.png" class="btn-icon" alt=""> Установить VK Live
             </a>
-            <a href="#" class="btn-install btn-vk-clips">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить VK Клипы
+            <!-- 16 -->
+            <a href="itms-services://?action=download-manifest&url=https://githubusercontent.com" class="btn-install btn-vk-clips">
+                <img src="vk clips logo.png" class="btn-icon" alt=""> Установить VK Клипы
             </a>
-            <a href="#" class="btn-install btn-vk-music">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить VK Music
-            </a>
-            <a href="#" class="btn-install btn-vk-video">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить VK Видео
-            </a>
-            <a href="#" class="btn-install btn-vk-messenger">
-                <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить VK Messenger
-            </a>
-        </div>
-
-        <div class="instruction-title">Инструкция по установке</div>
-        <div class="step">
-            <div class="step-header">
-                <span class="step-num">1</span>
-                <span class="step-text">Запустите установку</span>
-            </div>
-            <p class="step-desc">Откройте этот сайт строго в Safari, нажмите кнопку нужного приложения выше и подтвердите запрос системы. Подождите 1–2 минуты, пока иконка появится на экране.</p>
-        </div>
-    </div>
-</body>
-</html>
-```
+            <!-- 17 -->
