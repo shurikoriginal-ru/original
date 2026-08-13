@@ -55,7 +55,8 @@
             width: 24px; height: 24px; border-radius: 7px;
             margin-right: 10px; object-fit: cover; flex-shrink: 0;
         }
-        /* Цвета кнопок */
+
+        /* Базовые цвета кнопок */
         .btn-max { background-color: #002df1; color: #ffffff; }
         .btn-vk { background-color: #0077ff; color: #ffffff; }
         .btn-avito { background-color: #ffffff; color: #000000; }
@@ -70,16 +71,42 @@
         .btn-ozon { background-color: #005bff; color: #ffffff; }
         .btn-wb { background-color: #cb11ab; color: #ffffff; }
 
-        /* Новые цвета для дополнительных кнопок */
-        .btn-chatgpt { background-color: #10a37f; color: #ffffff; } /* фирменный зелёный ChatGPT */
-        .btn-vk-live { background-color: #0077ff; color: #ffffff; } /* как VK */
-        .btn-happ { background-color: #ff6b6b; color: #ffffff; } /* яркий акцентный красный */
-        .btn-vtb { background-color: #003399; color: #ffffff; } /* тёмно‑синий ВТБ */
-        .btn-spotify { background-color: #1db954; color: #ffffff; } /* зелёный Spotify */
-        .btn-vk-clips { background-color: #0077ff; color: #ffffff; } /* как VK */
-        .btn-vk-music { background-color: #0077ff; color: #ffffff; } /* как VK */
-        .btn-vk-video { background-color: #0077ff; color: #ffffff; } /* как VK */
-        .btn-vk-messenger { background-color: #0077ff; color: #ffffff; } /* как VK */
+        /* Новые стили под конкретные запросы */
+        .btn-chatgpt {
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #000000;
+        }
+        .btn-vk-live {
+            background: linear-gradient(135deg, #0077ff 0%, #ff4b5b 100%);
+            color: #ffffff;
+        }
+        .btn-happ {
+            background: repeating-linear-gradient(
+                45deg,
+                #f0f0f0,
+                #f0f0f0 10px,
+                #e0e0e0 10px,
+                #e0e0e0 20px
+            );
+            color: #333333;
+        }
+        .btn-vk-clips {
+            background: linear-gradient(90deg, #ffffff 0%, #9b59b6 50%, #3498db 100%);
+            color: #000000;
+        }
+        .btn-vk-music {
+            background: linear-gradient(90deg, #3498db 0%, #9b59b6 40%, #ffffff 100%);
+            color: #000000;
+        }
+        .btn-vk-video {
+            background: linear-gradient(90deg, #ffffff 0%, #ff4b5b 50%, #0077ff 100%);
+            color: #000000;
+        }
+        .btn-vk-messenger {
+            background: linear-gradient(90deg, #ffffff 0%, #4dd0b0 33%, #00c2ff 66%, #0077ff 100%);
+            color: #000000;
+        }
 
         .instruction-title {
             font-size: 18px; font-weight: 700; border-top: 1px solid #38383a;
@@ -142,7 +169,7 @@
                 <img src="WB logo.png" class="btn-icon" alt=""> Установить Wildberries
             </a>
 
-            <!-- Новые кнопки с подписями и цветами в стиле брендов -->
+            <!-- Новые кнопки с обновлёнными стилями -->
             <a href="#" class="btn-install btn-chatgpt">
                 <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить ChatGPT
             </a>
@@ -152,10 +179,11 @@
             <a href="#" class="btn-install btn-happ">
                 <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить Happ
             </a>
-            <a href="#" class="btn-install btn-vtb">
+            <!-- Кнопки 14 и 15 оставлены без спецэффектов, чтобы не дублировать логику, но можно добавить при необходимости -->
+            <a href="#" class="btn-install btn-vtb" style="background-color:#003399; color:#ffffff;">
                 <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить ВТБ
             </a>
-            <a href="#" class="btn-install btn-spotify">
+            <a href="#" class="btn-install btn-spotify" style="background-color:#1db954; color:#ffffff;">
                 <span class="btn-icon" style="background:#fff; visibility:hidden;"></span> Установить Spotify
             </a>
             <a href="#" class="btn-install btn-vk-clips">
