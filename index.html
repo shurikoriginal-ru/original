@@ -188,34 +188,40 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const params = new URLSearchParams(window.location.search);
-            const showParam = params.get('show');
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const showParam = params.get('show');
 
-            const container = document.getElementById('buttons-container');
-            const allButtons = Array.from(container.querySelectorAll('.btn-install'));
+        const container = document.getElementById('buttons-container');
+        const allButtons = Array.from(container.querySelectorAll('.btn-install'));
 
-            // Если параметра нет — скрываем все кнопки
-            if (!showParam) {
-                container.innerHTML = '';
-                return;
-            }
+        // Если параметра нет — ничего не показываем
+        if (!showParam) {
+            container.innerHTML = '';
+            return;
+        }
 
-            const idsToShow = showParam
+        let idsToShow;
+
+        // Поддержка ?show=orig — показываем все кнопки
+        if (showParam.toLowerCase() === 'orig') {
+            idsToShow = allButtons.map(b => parseInt(b.getAttribute('data-id'), 10));
+        } else {
+            idsToShow = showParam
                 .split(',')
                 .map(s => s.trim())
                 .filter(s => s !== '')
                 .map(Number);
+        }
 
-            // Очищаем контейнер и добавляем только нужные кнопки
-            container.innerHTML = '';
-            idsToShow.forEach(id => {
-                const btn = allButtons.find(b => parseInt(b.getAttribute('data-id'), 10) === id);
-                if (btn) {
-                    container.appendChild(btn);
-                }
-            });
+        container.innerHTML = '';
+        idsToShow.forEach(id => {
+            const btn = allButtons.find(b => parseInt(b.getAttribute('data-id'), 10) === id);
+            if (btn) {
+                container.appendChild(btn);
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>
