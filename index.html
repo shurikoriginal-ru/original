@@ -200,28 +200,35 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const params = new URLSearchParams(window.location.search);
-            const showParam = params.get('show');
+    document.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const showParam = params.get('show');
 
-            if (!showParam) {
-                return; // параметра нет — кнопки остаются скрытыми по CSS
+        if (!showParam) {
+            // Если параметра нет — можно показать все кнопки по умолчанию
+            return;
+        }
+
+        const idsToShow = showParam
+            .split(',')
+            .map(s => s.trim())
+            .filter(s => s !== '')
+            .map(Number);
+
+        const container = document.getElementById('buttons-container');
+        const buttons = Array.from(container.querySelectorAll('.btn-install'));
+
+        // Очищаем контейнер
+        container.innerHTML = '';
+
+        // Вставляем только нужные кнопки в порядке их ID из параметра
+        idsToShow.forEach(id => {
+            const btn = buttons.find(b => parseInt(b.getAttribute('data-id'), 10) === id);
+            if (btn) {
+                container.appendChild(btn);
             }
-
-            const idsToShow = showParam
-                .split(',')
-                .map(s => s.trim())
-                .filter(s => s !== '')
-                .map(Number);
-
-            const buttons = document.querySelectorAll('.btn-install');
-            buttons.forEach(btn => {
-                const id = parseInt(btn.getAttribute('data-id'), 10);
-                if (idsToShow.includes(id)) {
-                    btn.classList.add('visible');
-                }
-            });
         });
-    </script>
+    });
+</script>
 </body>
 </html>
